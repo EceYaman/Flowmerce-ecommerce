@@ -1,9 +1,22 @@
+import { Route, Switch } from 'react-router-dom'
 import './App.css'
+import { Header } from './layout/Header'
+import { Footer } from './layout/Footer'
+import { PageContent } from './layout/PageContent'
+import { HomePage } from './pages/HomePage'
 
 function App() {
   return (
     <>
-      <h1 class="text-3xl font-bold underline text-blue-500">Hello world!</h1>
+      <Header />
+      <PageContent>
+        <Switch>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </PageContent>
+      <Footer />
     </>
   )
 }
