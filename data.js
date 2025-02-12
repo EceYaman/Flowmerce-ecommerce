@@ -9,6 +9,18 @@ export const data = {
         { text: 'Contact', href: '#' },
         ],
     },
+
+    products: {
+        imgSrc: 'https://placehold.co/348x427',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+    },
+
     footer: {
         logo: './logo.svg',
         socialMedia: ['./facebook.svg','./instagram.svg','./twitter.svg'],

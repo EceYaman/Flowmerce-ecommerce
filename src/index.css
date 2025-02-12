@@ -2,9 +2,12 @@
 
 @theme {
     --color-primary: #23a6f0;
-    --color-secondary: #2dc071;
+    --color-secondary: #23856d;
+    --color-secondary-light: #2dc071;
+    --color-tertiary: #e77c40;
     --color-gray-light: #f7f7f7;
     --color-gray-text: #737373;
+    --color-light-text: #bdbdbd;
     --color-dark-text: #252b42;
     --color-alert: #ff4d4f;
 }
@@ -12,5 +15,11 @@
 @layer components {
     .btn-primary {
       @apply h-14 px-8 rounded bg-primary text-white;
+    }
+    .title {
+      @apply text-dark-text text-xl leading-10 font-bold;
+    }
+    .subtitle {
+      @apply text-lg leading-8 font-bold;
     }
 }
