@@ -2,7 +2,7 @@ import { data } from "../../data";
 
 export function ProductCard(){
  return(
-        <div className="flex flex-col gap-y-5 text-center">
+        <div className="flex flex-col gap-y-5 text-center px-8">
             <img src={data.products.imgSrc} alt="Product" />
             <h3 className="title">{data.products.title}</h3>
             <h4 className="subtitle text-gray-text">{data.products.subtitle}</h4>

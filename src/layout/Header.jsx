@@ -1,25 +1,36 @@
-import { data } from "../../data"
+import React, { useState } from 'react';
+import { MenuIcon, UserIcon, SearchIcon, ShoppingCartIcon } from 'lucide-react'; 
+import { data } from '../../data';
+import { Slider } from '../components/Slider';
 
 export function Header() {
-    return (
-      <>
-      <div className="w-full flex justify-between">
-        <img src={data.header.logo} className="w-40"/>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleMenuToggle = () => {
+      setIsMenuOpen(!isMenuOpen);
+  };
 
-        <div className="flex gap-x-5">
-          {data.header.icons.map((item, index) => (
-            <img key={index} src={item} className="w-8"/>
-          ))}
-        </div>
+  return (
+    <div>
+      <div className="w-full flex justify-between items-center p-8">
+        <img src={data.header.logo} className="w-32 h-auto"/>
+
+        <nav className="flex gap-x-6">
+            <UserIcon className="cursor-pointer" />
+            <SearchIcon className=" cursor-pointer" />
+            <ShoppingCartIcon className="cursor-pointer" />
+            <MenuIcon className="cursor-pointer" onClick={handleMenuToggle} />
+        </nav>
       </div>
 
-      <nav className="flex flex-col gap-y-5 my-12 text-xl text-center text-gray-text">
-        {data.header.menu.map((item, index) => (
-          <a key={index} href={item.href}>{item.text}</a>
-        ))}
-      </nav>
+        {isMenuOpen && (
+            <nav className="flex flex-col gap-y-5 my-12 text-xl font-semibold text-center text-gray-text">
+            {data.header.menu.map((item, index) => (
+              <a key={index} href={item.href}>{item.text}</a>
+            ))}
+          </nav>
+        )}
 
-      </>
-    )
-}
- 
+      <Slider/>
+    </div>
+  );
+};

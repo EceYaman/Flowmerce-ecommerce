@@ -7,7 +7,7 @@ import { HomePage } from './pages/HomePage'
 
 function App() {
   return (
-    <div className='max-w-full m-0 p-8'>
+    <div className='max-w-full m-0'>
       <Header />
       <PageContent>
         <Switch>

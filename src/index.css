@@ -13,8 +13,8 @@
 }
 
 @layer components {
-    .btn-primary {
-      @apply h-14 px-8 rounded bg-primary text-white;
+    .btn {
+      @apply h-14 px-8 rounded text-white;
     }
     .title {
       @apply text-dark-text text-xl leading-10 font-bold;

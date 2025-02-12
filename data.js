@@ -1,7 +1,6 @@
 export const data = {
     header:{
         logo: './logo.svg',
-        icons: ['./user.svg','./search.svg','./shop.svg','./menu.svg'],
         menu: [
         { text: 'Home', href: '#' },
         { text: 'Product', href: '#' },
@@ -11,7 +10,7 @@ export const data = {
     },
 
     products: {
-        imgSrc: 'https://placehold.co/348x427',
+        imgSrc: 'https://placehold.co/320x400',
         title: 'Graphic Design',
         subtitle: 'English Department',
         price: {
@@ -20,6 +19,33 @@ export const data = {
         },
         colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
     },
+
+    slides: [
+      {
+        id: 1,
+        image: 'https://placehold.co/400x600',
+        subtitle: 'SUMMER 2020',
+        title: 'NEW COLLECTION',
+        paragraph: 'We know how large objects will act, but things on a small scale.',
+        buttonText: 'SHOP NOW',
+      },
+      {
+        id: 2,
+        image: 'https://placehold.co/400x600',
+        subtitle: 'Fall 2020',
+        title: 'Latest Trends',
+        paragraph: 'Discover the latest trends in fashion and style.',
+        buttonText: 'Explore Now',
+      },
+      {
+        id: 3,
+        image: 'https://placehold.co/400x600',
+        subtitle: 'Winter 2020',
+        title: 'Winter Collection',
+        paragraph: 'Stay warm and stylish with our winter collection.',
+        buttonText: 'View Collection',
+      },
+    ],
 
     footer: {
         logo: './logo.svg',
