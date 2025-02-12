@@ -1,76 +1,58 @@
 import { useState } from "react";
+import { data } from "../../data";
+import { useForm } from "react-hook-form";
 
 export function Footer() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [email, setEmail] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Email submitted:', email);
-    };
+  const onSubmit = (data) => {
+    console.log('Email submitted:', data.email);
+  };
+
     return (
       <>
-      <img src="./logo.svg" className="w-40"/>
-      <div className="flex gap-x-5 pt-10">
-        <img src="./facebook.svg" className="w-6"/>
-        <img src="./instagram.svg" className="w-6"/>
-        <img src="./twitter.svg" className="w-6"/>
+      <div className="w-full left-0 absolute p-8 bg-gray-light">
+        <img src={data.footer.logo} alt="Logo" className="w-40" />
+        <div className="flex gap-x-5 pt-8">
+          {data.footer.socialMedia.map((item, index) => (
+            <img key={index} src={item} className="w-6"/>
+          ))}
+        </div>
       </div>
 
-          <div>    
-          <div>
-            <h3 className="text-lg font-semibold">Company Info</h3>
-            <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Carrier</a></li>
-              <li><a href="#">We are hiring</a></li>
-              <li><a href="#">Blog</a></li>
+      <div className="flex flex-col items-start gap-y-10 mt-64 font-semibold">
+        {data.footer.columns.map((column, index) => (
+          <div key={index}>
+            <h3 className="text-dark-text text-lg leading-12">{column.title}</h3>
+            <ul className="text-gray-text text-base leading-8">
+              {column.links.map((link, index) => (
+                <li key={index}>
+                  <a href={link.href}>{link.text}</a>
+                </li>
+              ))}
             </ul>
           </div>
+        ))}
+      </div>
 
-          <div>
-            <h3 className="text-lg font-semibold">Legal</h3>
-            <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Carrier</a></li>
-              <li><a href="#">We are hiring</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold">Features</h3>
-            <ul>
-              <li><a href="#">Business Marketing</a></li>
-              <li><a href="#">User Analytic</a></li>
-              <li><a href="#">Live Chat</a></li>
-              <li><a href="#">Unlimited Support</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold">Resources</h3>
-            <ul>
-              <li><a href="#">IOS & Android</a></li>
-              <li><a href="#">Watch a Demo</a></li>
-              <li><a href="#">Customers</a></li>
-              <li><a href="#">API</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div>
-            <h3 className="text-lg font-semibold">Get in Touch</h3>
-            <form onSubmit={handleSubmit}>
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="border p-2 rounded" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button type="submit" className="p-2 bg-blue-500 text-white rounded">Subscribe</button>
-            </form>
-          </div>
+      <div className="flex flex-col items-start mb-20 font-semibold">
+        <h3 className="text-dark-text text-lg pt-10 leading-12">Get in Touch</h3>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="email"
+            placeholder="Your email"
+            className="bg-gray-light h-14 rounded px-8"
+            {...register("email", { required: "Email is required" })}
+          />
+          {errors.email && <p className="text-alert">{errors.email.message}</p>}
+          <button type="submit" className="btn-primary">Subscribe</button>
+        </form>
+      </div>
+      <div className="w-full left-0 absolute p-8 bg-gray-light text-xl text-gray-text font-semibold text-center">
+        <p>Made With Love By</p>
+        <p>Finland All Right Reserved</p>
+      </div>
       </>
     )
 }

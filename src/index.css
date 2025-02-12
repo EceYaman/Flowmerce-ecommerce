@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary: #23a6f0;
+    --color-secondary: #2dc071;
+    --color-gray-light: #f7f7f7;
+    --color-gray-text: #737373;
+    --color-dark-text: #252b42;
+    --color-alert: #ff4d4f;
+}
+
+@layer components {
+    .btn-primary {
+      @apply h-14 px-8 rounded bg-primary text-white;
+    }
+}
