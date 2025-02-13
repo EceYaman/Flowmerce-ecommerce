@@ -9,16 +9,17 @@ export const data = {
         ],
     },
 
-    products: {
-        imgSrc: 'https://placehold.co/320x400',
+    products: [
+        {id: 1,
+        image: 'https://placehold.co/320x400',
         title: 'Graphic Design',
         subtitle: 'English Department',
         price: {
           original: '$16.48', 
           discount: '$6.48'
         },
-        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
-    },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]}
+      ],
 
     slides: [
       {
@@ -44,6 +45,31 @@ export const data = {
         title: 'Winter Collection',
         paragraph: 'Stay warm and stylish with our winter collection.',
         buttonText: 'View Collection',
+      },
+    ],
+
+    shop: [
+      {
+        id: 1,
+        title: 'MEN',
+        image: "https://placehold.co/320x500",
+      
+      },
+      {
+        id: 2,
+        title: 'WOMEN',
+        image: "https://placehold.co/320x500",
+       
+      },
+      {
+        id: 3,
+        title: 'ACCESSORIES',
+        image: "https://placehold.co/320x500",
+      },
+      {
+        id: 4,
+        title: 'KIDS',
+        image: "https://placehold.co/320x500",
       },
     ],
 
