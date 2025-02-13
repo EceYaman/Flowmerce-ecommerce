@@ -1,6 +1,8 @@
 import { data } from "../../data";
+import { BlogCard } from "../components/BlogCard";
 import { ProductCard } from "../components/ProductCard";
 import { ShopCard } from "../components/ShopCard";
+import { Slider } from "../components/Slider";
 
 export function HomePage() {
   return (
@@ -20,6 +22,17 @@ export function HomePage() {
           <ProductCard key={item.id} item={item} />
         ))}
       </div>
+      <Slider />
+
+       
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {data.blog.map((item) => (
+            <BlogCard
+              key={item.id}
+              item={item}
+            />
+          ))}
+        </div>
     </>
   );
 }

@@ -10,7 +10,8 @@ export const data = {
     },
 
     products: [
-        {id: 1,
+      {
+        id: 1,
         image: 'https://placehold.co/320x400',
         title: 'Graphic Design',
         subtitle: 'English Department',
@@ -18,7 +19,87 @@ export const data = {
           original: '$16.48', 
           discount: '$6.48'
         },
-        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]}
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 2,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 3,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 4,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 5,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 6,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 7,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+      {
+        id: 8,
+        image: 'https://placehold.co/320x400',
+        title: 'Graphic Design',
+        subtitle: 'English Department',
+        price: {
+          original: '$16.48', 
+          discount: '$6.48'
+        },
+        colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+      },
+
+        
       ],
 
     slides: [
@@ -70,6 +151,36 @@ export const data = {
         id: 4,
         title: 'KIDS',
         image: "https://placehold.co/320x500",
+      },
+    ],
+
+    blog: [
+      {
+        id: 1,
+        title: "Loudest à la Madison #1 (L'integral)",
+        excerpt: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+        date: "22 April 2021",
+        image: "https://placehold.co/330x300",
+        tags: ["Google", "Trending", "New"],
+        comments: 10
+      },
+      {
+        id: 2,
+        title: "Loudest à la Madison #2 (L'integral)",
+        excerpt: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+        date: "22 April 2021",
+        image: "https://placehold.co/330x300",
+        tags: ["Google", "Trending", "New"],
+        comments: 8
+      },
+      {
+        id: 3,
+        title: "Loudest à la Madison #3 (L'integral)",
+        excerpt: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+        date: "22 April 2021",
+        image: "https://placehold.co/330x300",
+        tags: ["Google", "Trending", "New"],
+        comments: 12
       },
     ],
 
