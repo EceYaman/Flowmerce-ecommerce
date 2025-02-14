@@ -41,16 +41,14 @@ export function Header() {
       <div className="w-full flex justify-between items-center p-8">
         <img src={data.header.logo} className="w-32 h-auto"/>
 
-        <nav className='hidden md:flex gap-x-8'>
-              <ul className="flex space-x-8">
-                <li><Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link></li>
-                <li><Link to="/shop" className="text-gray-600 hover:text-gray-900">Shop</Link></li>
-                <li><Link to="/about" className="text-gray-600 hover:text-gray-900">About</Link></li>
-                <li><Link to="/blog" className="text-gray-600 hover:text-gray-900">Blog</Link></li>
-                <li><Link to="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link></li>
-                <li><Link to="/pages" className="text-gray-600 hover:text-gray-900">Pages</Link></li>
-              </ul>
-            </nav>
+        <nav className='hidden  md:flex md:gap-x-8'>
+          <Link to="/" className="text-gray-text hover:text-dark-text">Home</Link>
+          <Link to="/shop" className="text-gray-text hover:text-dark-text">Shop</Link>
+          <Link to="/about" className="text-gray-text hover:text-dark-text">About</Link>
+          <Link to="/blog" className="text-gray-text hover:text-dark-text">Blog</Link>
+          <Link to="/contact" className="text-gray-text hover:text-dark-text">Contact</Link>
+          <Link to="/pages" className="text-gray-text hover:text-dark-text">Pages</Link>
+        </nav>
 
         <nav className="flex gap-x-6">
             <UserIcon className="cursor-pointer" />
@@ -70,7 +68,7 @@ export function Header() {
           </nav>
        </div>
 
-      <Slider/>
+      
     </div>
   );
 };

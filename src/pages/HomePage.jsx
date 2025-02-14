@@ -7,6 +7,7 @@ import { Slider } from "../components/Slider";
 export function HomePage() {
   return (
     <>
+      <Slider/>
       <div className="py-16">
         <div className="flex flex-col gap-y-4 text-center max-w-60 mx-auto md:max-w-full md:pb-10">
           <h3 className=" text-dark-text text-3xl font-bold">EDITOR'S PICK</h3>

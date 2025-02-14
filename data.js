@@ -102,6 +102,54 @@ export const data = {
         
       ],
 
+      products2: [
+        {
+          id: 1,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 2,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 3,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 4,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+          
+        ],
+
     slides: [
       {
         id: 1,
@@ -151,6 +199,35 @@ export const data = {
         id: 4,
         title: 'KIDS',
         image: "https://placehold.co/400x280",
+      },
+    ],
+
+    shop2: [
+      {
+        id: 1,
+        title: 'CLOTHS',
+        subtitle: '5 Items',
+        image: "https://placehold.co/350x300",
+      
+      },
+      {
+        id: 2,
+        title: 'CLOTHS',
+        subtitle: '5 Items',
+        image: "https://placehold.co/350x300",
+       
+      },
+      {
+        id: 3,
+        title: 'CLOTHS',
+        subtitle: '5 Items',
+        image: "https://placehold.co/350x300",
+      },
+      {
+        id: 4,
+        title: 'CLOTHS',
+        subtitle: '5 Items',
+        image: "https://placehold.co/350x300",
       },
     ],
 
