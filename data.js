@@ -147,6 +147,94 @@ export const data = {
           },
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
+        {
+          id: 1,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 2,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 3,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 4,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 1,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 2,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 3,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
+        {
+          id: 4,
+          image: 'https://placehold.co/320x400',
+          title: 'Graphic Design',
+          subtitle: 'English Department',
+          price: {
+            original: '$16.48', 
+            discount: '$6.48'
+          },
+          colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+        },
           
         ],
 
