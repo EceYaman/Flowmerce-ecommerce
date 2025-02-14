@@ -12,16 +12,17 @@ export function Footer() {
 
     return (
       <>
-      <div className="w-full p-8 bg-gray-light my-16">
+      <div className="w-full p-8 bg-gray-light my-16 md:flex md:justify-between md:items-center md:px-32 md:py-14">
         <img src={data.footer.logo} alt="Logo" className="w-40" />
-        <div className="flex gap-x-5 pt-8">
+        <div className="flex gap-x-5 pt-8 md:pt-0">
           {data.footer.socialMedia.map((item, index) => (
             <img key={index} src={item} className="w-6"/>
           ))}
         </div>
       </div>
 
-      <div className="flex flex-col items-start gap-y-4 font-semibold px-8">
+      <div className="md:flex md:flex-row md:justify-between md:mx-24 md:my-16">
+      <div className="flex flex-col items-start gap-y-4 font-semibold px-8 md:flex-row md:gap-x-28">
         {data.footer.columns.map((column, index) => (
           <div key={index}>
             <h3 className="text-dark-text text-lg leading-12">{column.title}</h3>
@@ -49,10 +50,12 @@ export function Footer() {
           <button type="submit" className="btn bg-primary">Subscribe</button>
         </form>
       </div>
-      <div className="w-full p-8 bg-gray-light text-xl text-gray-text font-semibold text-center">
-        <p>Made With Love By</p>
-        <p>Finland All Right Reserved</p>
+      </div>  
+
+      <div className="w-full p-8 bg-gray-light text-xl text-gray-text font-semibold md:px-32">
+        <p className="w-60 mx-auto text-center md:text-left md:w-full">Made With Love By Finland All Right Reserved</p>
       </div>
+      
       </>
     )
 }

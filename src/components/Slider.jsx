@@ -17,7 +17,7 @@ export function Slider() {
   return (
     <div className="relative w-full overflow-hidden">
       <div
-        className="flex transition-transform duration-500 ease-out"
+        className="flex transition-transform duration-500 ease-out  md:h-[85vh]"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {data.slides.map((slide) => (
@@ -27,9 +27,9 @@ export function Slider() {
               alt={slide.title}
               className="w-full object-cover"
             />
-            <div className="absolute inset-0 max-w-sm mx-auto">
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-white text-center ">
-                <h3 className="text-xl font-semibold mb-4">
+            <div className="absolute inset-0 max-w-sm mx-auto md:max-w-lg md:mx-48">
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-white text-center md:text-left md:items-start ">
+                <h3 className="text-xl font-semibold mb-4 ">
                   {slide.subtitle}
                 </h3>
                 <h2 className="text-5xl font-bold mb-6">

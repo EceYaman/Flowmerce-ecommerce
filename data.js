@@ -133,24 +133,24 @@ export const data = {
       {
         id: 1,
         title: 'MEN',
-        image: "https://placehold.co/320x500",
+        image: "https://placehold.co/400x580",
       
       },
       {
         id: 2,
         title: 'WOMEN',
-        image: "https://placehold.co/320x500",
+        image: "https://placehold.co/400x580",
        
       },
       {
         id: 3,
         title: 'ACCESSORIES',
-        image: "https://placehold.co/320x500",
+        image: "https://placehold.co/400x280",
       },
       {
         id: 4,
         title: 'KIDS',
-        image: "https://placehold.co/320x500",
+        image: "https://placehold.co/400x280",
       },
     ],
 

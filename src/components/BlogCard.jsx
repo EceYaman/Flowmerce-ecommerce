@@ -2,7 +2,7 @@ import { AlarmClock, ChevronRight, ChartArea} from 'lucide-react';
 
 export function BlogCard({ item}) {
     return (
-        <div className="bg-white shadow-sm mx-8">
+        <div className="bg-white shadow-sm mx-8 md:mx-0">
           <div className="relative">
             <img 
               src={item.image} 

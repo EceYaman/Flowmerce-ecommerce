@@ -1,6 +1,6 @@
 export function ProductCard({ item }){
  return(
-        <div className="flex flex-col gap-y-5 text-center p-8">
+        <div className="flex flex-col gap-y-5 text-center">
             <img src={item.image} alt="Product" />
             <h3 className="title">{item.title}</h3>
             <h4 className="subtitle text-gray-text">{item.subtitle}</h4>
