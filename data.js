@@ -1,12 +1,20 @@
 export const data = {
     header:{
         logo: './logo.svg',
-        menu: [
-        { text: 'Home', href: '#' },
-        { text: 'Product', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Contact', href: '#' },
+        hiddenMenu: [
+          { text: 'Home', link: "/" },
+          { text: 'Product', link: "/shop" },
+          { text: 'Pricing', link: "/pricing" },
+          { text: 'Contact', link: "/contact" },
         ],
+        menu:[
+          { text: 'Home', link: "/" },
+          { text: 'Shop', link: "/shop" },
+          { text: 'About', link: "/about" },
+          { text: 'Blog', link: "/blog" },
+          { text: 'Contact', link: "/contact" },
+          { text: 'Pages', link: "/pages" },
+        ]
     },
 
     products: [
@@ -148,7 +156,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 1,
+          id: 5,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -159,7 +167,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 2,
+          id: 6,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -170,7 +178,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 3,
+          id: 7,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -181,7 +189,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 4,
+          id: 8,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -192,7 +200,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 1,
+          id: 9,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -203,7 +211,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 2,
+          id: 10,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -214,7 +222,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 3,
+          id: 11,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -225,7 +233,7 @@ export const data = {
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
         },
         {
-          id: 4,
+          id: 12,
           image: 'https://placehold.co/320x400',
           title: 'Graphic Design',
           subtitle: 'English Department',
@@ -241,27 +249,48 @@ export const data = {
     slides: [
       {
         id: 1,
-        image: 'https://placehold.co/400x600',
-        subtitle: 'SUMMER 2020',
+        image: 'https://placehold.co/400x700',
+        subtitle: 'SUMMER 2024',
         title: 'NEW COLLECTION',
         paragraph: 'We know how large objects will act, but things on a small scale.',
         buttonText: 'SHOP NOW',
       },
       {
         id: 2,
-        image: 'https://placehold.co/400x600',
-        subtitle: 'Fall 2020',
+        image: 'https://placehold.co/400x700',
+        subtitle: 'Fall 2024',
         title: 'Latest Trends',
         paragraph: 'Discover the latest trends in fashion and style.',
         buttonText: 'Explore Now',
       },
       {
         id: 3,
-        image: 'https://placehold.co/400x600',
-        subtitle: 'Winter 2020',
+        image: 'https://placehold.co/400x700',
+        subtitle: 'Winter 2024',
         title: 'Winter Collection',
         paragraph: 'Stay warm and stylish with our winter collection.',
         buttonText: 'View Collection',
+      },
+    ],
+
+    slides2: [
+      {
+        id: 1,
+        image: 'https://placehold.co/400x700',
+        subtitle: 'Spring 2024',
+        title: 'Vita Classic Product',
+        paragraph: 'We know how large objects will act. We know how are objects will act.',
+        price:"$16.50",
+        buttonText: 'ADD TO CARD',
+      },
+      {
+        id: 2,
+        image: 'https://placehold.co/400x700',
+        subtitle: 'Summer 2024',
+        title: 'Vita Classic Product',
+        paragraph: 'We know how are objects will act.',
+        price:"$16.50",
+        buttonText: 'ADD TO CARD',
       },
     ],
 
@@ -269,24 +298,24 @@ export const data = {
       {
         id: 1,
         title: 'MEN',
-        image: "https://placehold.co/400x580",
+        image: "https://placehold.co/400x550",
       
       },
       {
         id: 2,
         title: 'WOMEN',
-        image: "https://placehold.co/400x580",
+        image: "https://placehold.co/400x550",
        
       },
       {
         id: 3,
         title: 'ACCESSORIES',
-        image: "https://placehold.co/400x280",
+        image: "https://placehold.co/400x265",
       },
       {
         id: 4,
         title: 'KIDS',
-        image: "https://placehold.co/400x280",
+        image: "https://placehold.co/400x265",
       },
     ],
 
@@ -347,6 +376,14 @@ export const data = {
         tags: ["Google", "Trending", "New"],
         comments: 12
       },
+    ],
+    brandLogos:[
+      { src: "logo1.svg", alt: "Hooli" },
+      { src: "logo2.svg", alt: "Lyft" },
+      { src: "logo3.svg", alt: "Logo 3" },
+      { src: "logo4.svg", alt: "Stripe" },
+      { src: "logo5.svg", alt: "AWS" },
+      { src: "logo6.svg", alt: "Reddit" },
     ],
 
     footer: {

@@ -1,4 +1,4 @@
-import { ChevronRight, LayoutGridIcon,MenuSquare} from "lucide-react";
+import { ChevronRight, LayoutGridIcon,Menu} from "lucide-react";
 import { data } from "../../data";
 import { ShopCard } from "../components/ShopCard";
 import { useState } from "react";
@@ -6,7 +6,6 @@ import { ProductCard } from "../components/ProductCard";
 import { Link } from "react-router-dom";
 
 export function ShopPage(){
-    const [viewType, setViewType] = useState('grid');
     const [sortBy, setSortBy] = useState('popularity');
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 3;
@@ -16,54 +15,37 @@ export function ShopPage(){
     const handlePrevious = () =>
       currentPage > 1 && setCurrentPage(currentPage - 1);
 
-    const logos = [
-        { src: "logo1.svg", alt: "Hooli" },
-        { src: "logo2.svg", alt: "Lyft" },
-        { src: "logo3.svg", alt: "Logo 3" },
-        { src: "logo4.svg", alt: "Stripe" },
-        { src: "logo5.svg", alt: "AWS" },
-        { src: "logo6.svg", alt: "Reddit" },
-      ];
-
     return (
-        <main className="md:px-32">
-        <div className="flex flex-col gap-y-12 items-center py-10 md:flex-row md:justify-between">
-          <h2 className="text-3xl text-dark-text font-bold">Shop</h2>
+        <main>
+        <div className="bg-gray-light w-full pb-12">
+        <div className="flex flex-col gap-y-12 items-center py-10 md:flex-row md:justify-between md:px-32">
+          <h3 className="h3">Shop</h3>
           <nav className='flex gap-x-4 '>
           <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
           <ChevronRight className="text-gray-text"/>
           <Link to="/shop" className="text-gray-text font-semibold text-lg">Shop</Link>
           </nav>
         </div>
-        <div className="flex flex-col gap-y-6 px-8 md:px-0 md:flex-row md:gap-x-4" >
+        <div className="flex flex-col gap-y-6 px-8 md:flex-row md:gap-x-4 md:px-32" >
             {data.shop2.map((item) => (
                 <ShopCard key={item.id} item={item} />
             ))}
         </div>
+        </div> 
 
-        <div className="flex flex-col md:flex-row items-center justify-between p-4 md:p-0 md:my-16">
+        <div className="flex flex-col gap-y-6 md:flex-row items-center justify-between p-4 md:p-0 md:my-16 md:px-32">
         <p className="text-gray-text text-lg font-medium">Shopping all 12 results</p>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 md:px-32">
         <p className="text-gray-text text-lg font-medium">Views:</p>
-        <button
-          className={`p-2 rounded ${viewType === 'grid' ? '' : ''}`}
-          onClick={() => setViewType('grid')}
-        >
-          <LayoutGridIcon/>
-        </button>
-        <button
-          className={`p-2 rounded ${viewType === 'list' ? '' : ''}`}
-          onClick={() => setViewType('list')}
-        >
-           <MenuSquare/>
-        </button>
+        <LayoutGridIcon className="stroke-1 border"/>
+        <Menu className="stroke-1 border"/>
       </div>
 
       <div className="flex items-center space-x-2 ">
         <select
           id="sort-by"
-          className="border border-gray-300 rounded p-4"
+          className="border bg-gray-light border-light-text rounded p-4"
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
         >
@@ -79,7 +61,7 @@ export function ShopPage(){
       </div>
     </div>
         
-    <div className="flex flex-col p-8 gap-y-12 md:grid md:grid-cols-4  md:gap-8 md:gap-y-8 md:p-0" >
+    <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32" >
             {data.products2.map((item) => (
                 <ProductCard key={item.id} item={item} />
             ))}
@@ -123,13 +105,13 @@ export function ShopPage(){
       </button>
     </div>
 
-    <div className="flex flex-col items-center space-y-8 mt-8 md:flex-row md:justify-between">
-      {logos.map((logo, index) => (
+    <div className="flex flex-col items-center space-y-8 mt-24 md:flex-row md:justify-between md:px-32">
+      {data.brandLogos.map((logo, index) => (
         <img
           key={index}
           src={logo.src}
           alt={logo.alt}
-          className="w-32 grayscale hover:grayscale-0 transition-all duration-300"
+          className="w-20"
         />
       ))}
     </div>

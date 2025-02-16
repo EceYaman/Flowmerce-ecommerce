@@ -2,7 +2,7 @@ import { AlarmClock, ChevronRight, ChartArea} from 'lucide-react';
 
 export function BlogCard({ item}) {
     return (
-        <div className="bg-white shadow-sm mx-8 md:mx-0">
+        <div className="bg-white shadow-sm">
           <div className="relative">
             <img 
               src={item.image} 
@@ -19,35 +19,35 @@ export function BlogCard({ item}) {
               {item.tags.map((tag, index) => (
                 <span 
                   key={index} 
-                  className="text-gray-text text-base font-medium"
+                  className="text-gray-text text-sm font-medium"
                 >
                   {tag}
                 </span>
               ))}
             </div>
     
-            <h2 className="text-2xl font-semibold mb-3 text-dark-text">
+            <h4 className="text-2xl font-semibold mb-3 text-dark-text">
               {item.title}
-            </h2>
+            </h4>
             
-            <p className="text-gray-text text-base font-medium  mb-6">
+            <p className="text-gray-text text-sm font-medium  mb-6">
               {item.excerpt}
             </p>
             
-            <div className="flex items-center justify-between text-gray-text text-base font-medium mb-6">
+            <div className="flex items-center justify-between text-gray-text text-sm font-medium mb-6">
               <div className="flex items-center">
-                <AlarmClock className="w-4 h-4 mr-1" />
+                <AlarmClock className="w-4 h-4 mr-1 stroke-primary" />
                 <span>{item.date}</span>
               </div>
               <div className="flex items-center">
-                <ChartArea className="w-4 h-4 mr-1" />
+                <ChartArea className="w-4 h-4 mr-1 stroke-secondary" />
                 <span>{item.comments} comments</span>
               </div>
             </div>
     
-            <button className="flex items-center text-gray-text font-semibold text-xl">
+            <button className="flex items-center text-gray-text font-semibold text-lg">
               <span>Learn More</span>
-              <ChevronRight className="w-8 h-8" />
+              <ChevronRight className="w-8 h-8 stroke-1 stroke-primary" />
             </button>
           </div>
         </div>

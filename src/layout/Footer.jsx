@@ -25,7 +25,7 @@ export function Footer() {
       <div className="flex flex-col items-start gap-y-4 font-semibold px-8 md:flex-row md:gap-x-28">
         {data.footer.columns.map((column, index) => (
           <div key={index}>
-            <h3 className="text-dark-text text-lg leading-12">{column.title}</h3>
+            <h6 className="text-dark-text text-lg leading-12">{column.title}</h6>
             <ul className="text-gray-text text-base leading-8">
               {column.links.map((link, index) => (
                 <li key={index}>
@@ -38,7 +38,7 @@ export function Footer() {
       </div>
 
       <div className="flex flex-col items-start font-semibold px-8 mb-16">
-        <h3 className="text-dark-text text-lg pt-4 leading-12">Get in Touch</h3>
+        <h6 className="text-dark-text text-lg pt-4 leading-12">Get in Touch</h6>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
