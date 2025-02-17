@@ -62,7 +62,7 @@ export function ShopPage(){
     </div>
         
     <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32" >
-            {data.products2.map((item) => (
+            {data.products.map((item) => (
                 <ProductCard key={item.id} item={item} />
             ))}
         </div>

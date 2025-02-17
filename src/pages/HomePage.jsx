@@ -5,6 +5,7 @@ import { ShopCard } from "../components/ShopCard";
 import { Slider } from "../components/Slider";
 
 export function HomePage() {
+  const limitedProducts = data.products.slice(0, 8);
   return (
     <>
       <Slider slidesData={data.slides} />
@@ -37,7 +38,7 @@ export function HomePage() {
           <p className="text-gray-text text-base font-medium ">Problems trying to resolve the conflinct between</p>
         </div>
         <div className="flex flex-col p-8 gap-y-16 md:grid md:grid-cols-4 md:mx-24 md:gap-4 md:gap-y-16">
-          {data.products.map((item) => (
+          {limitedProducts.map((item) => (
             <ProductCard key={item.id} item={item} />
           ))}
         </div>

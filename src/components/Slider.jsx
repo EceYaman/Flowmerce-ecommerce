@@ -29,17 +29,17 @@ export function Slider({ slidesData }) {
           <div key={slide.id} className="w-full relative flex-shrink-0">
             <img
               src={slide.image}
-              alt={slide.title}
+              alt={slide.id}
               className="w-full object-cover"
             />
             <div className="absolute inset-0 max-w-sm mx-auto md:max-w-lg md:mx-48">
               <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-white text-center md:text-left md:items-start">
-                <h5 className="text-xl font-semibold mb-4">{slide.subtitle}</h5>
-                <h2 className="text-5xl font-bold mb-6">{slide.title}</h2>
-                <p className="text-xl mb-8">{slide.paragraph}</p>
+                {slide.subtitle ? (<h5 className="text-xl font-semibold mb-4">{slide.subtitle}</h5>) : ""}
+                {slide.title ? (<h2 className="text-5xl font-bold mb-6">{slide.title}</h2>) : ""}
+                {slide.paragraph ? (<p className="text-xl mb-8">{slide.paragraph}</p>) : ""}
                 <div className='flex flex-col gap-y-5 md:flex-row md:gap-x-10 md:items-center'>
                 {slide.price ? (<p className='text-2xl font-bold'>{slide.price}</p>) : ""}
-                <button className="btn bg-secondary-light">{slide.buttonText}</button>
+                {slide.buttonText ? (<button className="btn bg-secondary-light">{slide.buttonText}</button>) : ""}
                 </div>
               </div>
             </div>

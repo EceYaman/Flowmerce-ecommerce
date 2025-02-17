@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
+
 export function ProductCard({ item }){
  return(
-        <div className="flex flex-col gap-y-5 text-center">
+        <>
+        <Link to={`/product/${item.id}`}>
+        <div className="flex flex-col gap-y-5 text-center bg-white pb-2">
             <img src={item.image} alt="Product" />
             <h5 className="card-title">{item.title}</h5>
             <h6 className="card-subtitle text-gray-text">{item.subtitle}</h6>
@@ -17,5 +21,7 @@ export function ProductCard({ item }){
                 ))}
             </div>
         </div>
+        </Link>
+        </>
     )
 }
