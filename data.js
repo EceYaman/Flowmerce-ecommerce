@@ -1,19 +1,12 @@
 export const data = {
     header:{
         logo: '/logo.svg',
-        hiddenMenu: [
-          { text: 'Home', link: "/" },
-          { text: 'Product', link: "/product" },
-          { text: 'Pricing', link: "/pricing" },
-          { text: 'Contact', link: "/contact" },
-        ],
         menu:[
           { text: 'Home', link: "/" },
           { text: 'Shop', link: "/shop" },
           { text: 'About', link: "/about" },
-          { text: 'Blog', link: "/blog" },
+          { text: 'Team', link: "/team" },
           { text: 'Contact', link: "/contact" },
-          { text: 'Pages', link: "/pages" },
         ]
     },
 

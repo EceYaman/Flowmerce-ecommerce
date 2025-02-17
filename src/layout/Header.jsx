@@ -49,22 +49,24 @@ export function Header() {
             ))}
         </nav>
 
-        <nav className="flex gap-x-8">
-            <div className='flex items-center gap-x-2'>
-            <User2Icon className="cursor-pointer stroke-1 stroke-primary md:w-5" />
-            <Link to="/login" className='hidden md:block md:text-base md:text-primary md:font-medium'>Login/Register</Link>
+        <nav className="flex gap-x-6">
+            <div className='flex items-center gap-x-1'>
+              <Link to="/signup"><User2Icon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
+              <Link to="/login" className='hidden md:block md:text-base md:text-primary md:font-medium'>Login</Link>
+              <span className='hidden md:block md:text-base md:text-primary md:font-medium'>/</span>
+              <Link to="/signup" className='hidden md:block md:text-base md:text-primary md:font-medium'>Register</Link>
             </div>
             <SearchIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" />
-            <ShoppingCartIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" />
+            <Link to="/shoppingcart"><ShoppingCartIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
+            <Link to="/favorites"><Heart className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
             <MenuIcon className="cursor-pointer md:hidden stroke-1 stroke-primary md:w-5" onClick={handleMenuToggle} />
-            <Heart className="hidden md:block md:cursor-pointer stroke-1 stroke-primary md:w-5" />
         </nav>
         </div>
       </div>
 
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
             <nav className="flex flex-col gap-y-5 my-12 text-xl font-semibold text-center text-gray-text">
-            {data.header.hiddenMenu.map((item, index) => (
+            {data.header.menu.map((item, index) => (
               <Link key={index} to={item.link}>{item.text}</Link>
             ))}
           </nav>
