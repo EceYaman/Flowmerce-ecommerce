@@ -30,7 +30,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -40,11 +40,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -61,7 +61,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -71,11 +71,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -92,7 +92,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -102,11 +102,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -123,7 +123,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -133,11 +133,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -154,7 +154,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -164,11 +164,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -185,7 +185,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -195,11 +195,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -216,7 +216,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -226,11 +226,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -247,7 +247,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -257,11 +257,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -278,7 +278,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -288,11 +288,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -309,7 +309,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -319,11 +319,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -340,7 +340,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -350,11 +350,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -371,7 +371,7 @@ export const data = {
           info:"Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
           review:"10 Reviews",
           stock:"In Stock",
-          descImage:"https://placehold.co/400x320",
+          descImage:"https://placehold.co/350x420",
           descTitle:"the quick fox jumps over",
           descText:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
           descTitle2:"the quick fox jumps over",
@@ -381,11 +381,11 @@ export const data = {
           slides:[
             {
               id: 1,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
             {
               id: 2,
-              image: 'https://placehold.co/400x300', 
+              image: 'https://placehold.co/500x450', 
             },
           ],
           colors: ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]

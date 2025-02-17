@@ -2,12 +2,11 @@ import { ChevronRight, EyeIcon, Heart, ShoppingCartIcon, StarHalf, StarIcon } fr
 import { Link } from "react-router-dom";
 import { Slider } from "../components/Slider";
 import { data } from "../../data";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductCard } from "../components/ProductCard";
 
 export function ProductDetailPage() {
-  const limitedProducts = data.products.slice(0, 4);
+  const limitedProducts = data.products.slice(0, 8);
   const { id } = useParams(); 
   const product = data.products.find((product) => product.id === parseInt(id)); 
 
@@ -17,14 +16,14 @@ export function ProductDetailPage() {
 
   return(
     <>
-      <div className="bg-gray-light w-full px-8 ">
-        <nav className='flex justify-center gap-x-4 py-10 md:px-32'>
+      <div className="bg-gray-light w-full px-8  md:px-32">
+        <nav className='flex justify-center gap-x-4 py-10 md:justify-start'>
         <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
         <ChevronRight className="text-gray-text"/>
         <Link to="/shop" className="text-gray-text font-semibold text-lg">Shop</Link>
         </nav>
 
-        <div className="flex flex-col gap-y-8 md:flex-row mt-10">
+        <div className="flex flex-col gap-y-8 md:flex-row  md:gap-x-16 md:items-center">
           <Slider slidesData={product.slides}/>
 
           <div className="">
@@ -66,23 +65,23 @@ export function ProductDetailPage() {
         </div>
       </div>
 
-      <div className="px-8">
-        <nav className="text-gray-text text-lg font-medium flex justify-between pt-10">
+      <div className="px-8 md:px-32">
+        <nav className="text-gray-text text-lg font-medium flex justify-between pt-10 md:justify-center md:gap-16">
           <Link to="#description">Description</Link>
           <Link to="#additional">Additional Information</Link>
           <Link to="#reviews">Reviews</Link>
         </nav>
 
-        <div className="flex flex-col gap-12 py-10">
+        <div className="flex flex-col gap-10 py-10 md:flex-row md:justify-between md:items-center">
           <img src={product.descImage} alt={product.title} className="rounded-lg"/>
-          <div className="flex flex-col gap-6">
-            <h3 className="h3">{product.descTitle}</h3>
+          <div className="flex flex-col gap-6 md:max-w-[30%]">
+            <h3 className="h3 ">{product.descTitle}</h3>
             {product.descText.map((item,index) => (
-              <p key={index} className="text-base text-gray-text font-medium max-w-[85%]">{item}</p>
+              <p key={index} className="text-base text-gray-text font-medium max-w-[85%] ">{item}</p>
             ))}
           </div>
 
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-6">
               <h3 className="h3">{product.descTitle2}</h3>
               {product.descList.map((item,index) => (
@@ -108,12 +107,14 @@ export function ProductDetailPage() {
       </div>
 
 
-      <div className="bg-gray-light px-8 py-12 md:mx-24">
+      <div className="bg-gray-light w-full px-8 py-12 md:px-32">
         <h3 className="h3">BESTSELLER PRODUCTS</h3>
         <hr className="text-light-text border my-8"></hr>
         <div className="flex flex-col  gap-y-16 md:grid md:grid-cols-4  md:gap-4 md:gap-y-16">
-          {limitedProducts.map((item) => (
-            <ProductCard key={item.id} item={item}/>
+          {limitedProducts.map((item, index) => (
+            <div key={item.id} className={`${index >= 4 ? 'hidden md:block' : ''}`}>
+              <ProductCard item={item}/>
+            </div>
           ))}
         </div>
       </div>

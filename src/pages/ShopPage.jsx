@@ -6,6 +6,7 @@ import { ProductCard } from "../components/ProductCard";
 import { Link } from "react-router-dom";
 
 export function ShopPage(){
+    const limitedProducts = data.products.slice(0, 12);
     const [sortBy, setSortBy] = useState('popularity');
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 3;
@@ -61,10 +62,12 @@ export function ShopPage(){
       </div>
     </div>
         
-    <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32" >
-            {data.products.map((item) => (
-                <ProductCard key={item.id} item={item} />
-            ))}
+        <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32" >
+          {limitedProducts.map((item, index) => (
+            <div key={item.id} className={`${index >= 4 ? 'hidden md:block' : ''}`}>
+              <ProductCard item={item}/>
+            </div>
+          ))}
         </div>
 
         <div className="flex justify-center items-center mt-4 md:py-8">
