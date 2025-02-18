@@ -1,5 +1,5 @@
 import api from '../services/api';
-import { setRoles } from './actions/clientActions';
+import { setRoles, setUser } from './actions/clientActions';
 
 export const fetchRoles = () => async (dispatch, getState) => {
   const { client } = getState();
@@ -10,5 +10,19 @@ export const fetchRoles = () => async (dispatch, getState) => {
     dispatch(setRoles(response.data));
   } catch (error) {
     console.error("Error fetching roles:", error);
+  }
+};
+
+export const loginUser = (credentials, rememberMe) => async (dispatch) => {
+  try {
+    const response = await api.post('/login', credentials);
+    const { user, token } = response.data;
+    dispatch(setUser(user));
+    if (rememberMe) {
+      localStorage.setItem('token', token);
+    }
+    return user; 
+  } catch (error) {
+    throw error;
   }
 };
