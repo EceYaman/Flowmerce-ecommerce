@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useHistory } from "react-router-dom"
 import api from "../services/api"
+import { Link } from "react-router-dom"
 
 export function SignUpPage() {
   const [roles, setRoles] = useState([])
@@ -18,7 +19,6 @@ export function SignUpPage() {
   const roleId = watch("role_id", "customer")
   const isStoreSelected = roleId === "store" || roleId === "2"
 
-  // Roles API çağrısını yapıyoruz
   useEffect(() => {
     const fetchRoles = async () => {
       try {
@@ -50,19 +50,19 @@ export function SignUpPage() {
     }
   }
 
-  const renderErrorMessage = (field) => errors[field] && <p className="mt-1 text-sm text-red-600">{errors[field].message}</p>
+  const renderErrorMessage = (field) => errors[field] && <p className="mt-1 text-sm text-alert">{errors[field].message}</p>
 
   return (
     <div className="w-full max-w-md mx-auto p-6">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold mb-2">Create your account</h1>
-        <p className="text-gray-600">Join us today and explore amazing products</p>
+        <h3 className="h3 mb-2">Create your account</h3>
+        <p className="text-gray-text text-base">Join us and explore amazing products</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
             id="name"
             type="text"
@@ -71,14 +71,14 @@ export function SignUpPage() {
               minLength: { value: 3, message: "Name must be at least 3 characters" },
             })}
             placeholder="Enter your full name"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="form-input"
           />
           {renderErrorMessage("name")}
         </div>
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input
             id="email"
             type="email"
@@ -87,14 +87,14 @@ export function SignUpPage() {
               pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Invalid email address" },
             })}
             placeholder="Enter your email"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="form-input"
           />
           {renderErrorMessage("email")}
         </div>
 
         {/* Password */}
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <label htmlFor="password" className="form-label">Password</label>
           <input
             id="password"
             type="password"
@@ -104,14 +104,14 @@ export function SignUpPage() {
               pattern: { value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).*$/, message: "Password must include numbers, lowercase, uppercase, and special characters" },
             })}
             placeholder="Create a strong password"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="form-input"
           />
           {renderErrorMessage("password")}
         </div>
 
         {/* Confirm Password */}
         <div>
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
           <input
             id="confirmPassword"
             type="password"
@@ -119,18 +119,18 @@ export function SignUpPage() {
               validate: (value) => value === password || "Passwords do not match",
             })}
             placeholder="Confirm your password"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="form-input"
           />
           {renderErrorMessage("confirmPassword")}
         </div>
 
         {/* Account Type / Role */}
         <div>
-          <label htmlFor="role_id" className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+          <label htmlFor="role_id" className="form-label">Account Type</label>
           <select
             id="role_id"
             {...register("role_id")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="form-input"
           >
             {roles.map((role) => (
               <option key={role.id} value={role.id}>{role.name}</option>
@@ -138,57 +138,56 @@ export function SignUpPage() {
           </select>
         </div>
 
-        {/* Ekstra mağaza alanları: Eğer "store" seçiliyse */}
         {isStoreSelected && (
           <>
             {/* Store Name */}
             <div>
-              <label htmlFor="store_name" className="block text-sm font-medium text-gray-700 mb-1">Store Name</label>
+              <label htmlFor="store_name" className="form-label">Store Name</label>
               <input
                 id="store_name"
                 type="text"
                 {...register("store_name", { required: "Store name is required", minLength: { value: 3, message: "Store name must be at least 3 characters" } })}
                 placeholder="Enter your store name"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="form-input"
               />
               {renderErrorMessage("store_name")}
             </div>
 
             {/* Store Phone */}
             <div>
-              <label htmlFor="store_phone" className="block text-sm font-medium text-gray-700 mb-1">Store Phone</label>
+              <label htmlFor="store_phone" className="form-label">Store Phone</label>
               <input
                 id="store_phone"
                 type="tel"
                 {...register("store_phone", { required: "Store phone is required", pattern: { value: /^(\+90|0)?[0-9]{10}$/, message: "Invalid Turkish phone number" } })}
-                placeholder="Enter your store phone number"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="0XXX XXX XX XX"
+                className="form-input"
               />
               {renderErrorMessage("store_phone")}
             </div>
 
             {/* Store Tax ID */}
             <div>
-              <label htmlFor="tax_no" className="block text-sm font-medium text-gray-700 mb-1">Store Tax ID</label>
+              <label htmlFor="tax_no" className="form-label">Store Tax ID</label>
               <input
                 id="tax_no"
                 type="text"
                 {...register("tax_no", { required: "Tax ID is required", pattern: { value: /^T\d{4}V\d{6}$/, message: "Invalid Tax ID format (TXXXXVXXXXXX)" } })}
-                placeholder="e.g. T1234V123456"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="T XXXX V XXXXXX"
+                className="form-input"
               />
               {renderErrorMessage("tax_no")}
             </div>
 
             {/* Store Bank Account */}
             <div>
-              <label htmlFor="bank_account" className="block text-sm font-medium text-gray-700 mb-1">Store Bank Account</label>
+              <label htmlFor="bank_account" className="form-label">Store Bank Account</label>
               <input
                 id="bank_account"
                 type="text"
                 {...register("bank_account", { required: "Bank account is required", pattern: { value: /^TR\d{24}$/, message: "Invalid IBAN format" } })}
-                placeholder="e.g. TR330006100519786457841326"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="TR..."
+                className="form-input"
               />
               {renderErrorMessage("bank_account")}
             </div>
@@ -198,22 +197,14 @@ export function SignUpPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <div className="flex items-center justify-center">
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
+                <path className="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
               Creating Account...
             </div>
@@ -222,6 +213,17 @@ export function SignUpPage() {
           )}
         </button>
       </form>
+      <div className="flex flex-col gap-2 items-center justify-center my-6">
+        <p className="text-gray-text text-sm">-or continue with-</p>
+        <div className="w-full flex justify-between">
+        <button className="w-[48%] bg-white text-gray-text py-2 border border-light-text rounded-lg hover:text-dark-text">Google</button>
+        <button className="w-[48%] bg-white text-gray-text py-2 border border-light-text rounded-lg hover:text-dark-text">Facebook</button>
+        </div>
+      </div>
+      <div className="flex gap-2 items-center justify-center">
+      <p className="text-gray-text text-sm">Already have an account?</p>
+      <Link to="/login" className='text-base text-primary font-semibold'>Sign in</Link>
+      </div>
     </div>
   )
 }
