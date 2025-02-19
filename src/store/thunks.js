@@ -1,5 +1,5 @@
 import api from '../services/api';
-import { setRoles, setUser } from './actions/clientActions';
+import { clearUser, setRoles, setUser } from './actions/clientActions';
 
 export const fetchRoles = () => async (dispatch, getState) => {
   const { client } = getState();
@@ -27,5 +27,28 @@ export const loginUser = (credentials, rememberMe) => async (dispatch) => {
     return user; 
   } catch (error) {
     throw error;
+  }
+};
+
+export const verifyToken = () => async (dispatch) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    api.defaults.headers.common['Authorization'] = token;
+
+    try {
+      const response = await api.get('/verify');
+      const { token: newToken, ...user } = response.data;
+
+      dispatch(setUser(user));
+
+      localStorage.setItem('token', newToken);
+      api.defaults.headers.common['Authorization'] = newToken;
+    } catch (error) {
+      console.error('Token verification failed:', error);
+
+      localStorage.removeItem('token');
+      delete api.defaults.headers.common['Authorization'];
+      dispatch(clearUser());
+    }
   }
 };
