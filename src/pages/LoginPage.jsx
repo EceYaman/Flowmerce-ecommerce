@@ -25,11 +25,11 @@ export function LoginPage() {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <h3 className="h3 mb-4 text-center">Login</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Email Alanı */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input
             id="email"
             type="email"
@@ -40,22 +40,22 @@ export function LoginPage() {
                 message: "Invalid email address"
               }
             })}
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            className="form-input"
             placeholder="you@example.com"
           />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+          {errors.email && <p className="text-alert text-sm mt-1">{errors.email.message}</p>}
         </div>
         {/* Password Alanı */}
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+          <label htmlFor="password" className="form-label">Password</label>
           <input
             id="password"
             type="password"
             {...register("password", { required: "Password is required" })}
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            className="form-input"
             placeholder="********"
           />
-          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+          {errors.password && <p className="text-alert text-sm mt-1">{errors.password.message}</p>}
         </div>
         {/* Remember Me Checkbox */}
         <div className="flex items-center">
@@ -65,7 +65,7 @@ export function LoginPage() {
             {...register("rememberMe")}
             className="mr-2"
           />
-          <label htmlFor="rememberMe" className="text-sm text-gray-700">Remember me</label>
+          <label htmlFor="rememberMe" className="text-sm text-gray-text">Remember me</label>
         </div>
         <button
           type="submit"
@@ -75,8 +75,8 @@ export function LoginPage() {
         </button>
       </form>
       <div className="mt-4">
-        <p className="text-sm text-gray-700">
-          Don't have an account? <Link to="/signup" className="text-primary">Sign up</Link>
+        <p className="text-sm text-gray-text text-center">
+          Don't have an account? <Link to="/signup" className="text-primary font-semibold text-base">Sign up</Link>
         </p>
       </div>
     </div>
