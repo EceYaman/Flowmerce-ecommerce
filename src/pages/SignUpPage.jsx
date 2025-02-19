@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form"
 import { useHistory } from "react-router-dom"
 import api from "../services/api"
 import { Link } from "react-router-dom"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function SignUpPage() {
   const [roles, setRoles] = useState([])
@@ -41,10 +43,10 @@ export function SignUpPage() {
       }
 
       await api.post("/signup", formData)
-      alert("You need to click the link in the email to activate your account!")
+      toast.success("Welcome!You need to click link in email to activate your account!")
       history.goBack()
     } catch (error) {
-      alert(error.response?.data?.message || "An error occurred during signup")
+      toast.error(error.response?.data?.message || "An error occurred during signup")
     } finally {
       setIsSubmitting(false)
     }

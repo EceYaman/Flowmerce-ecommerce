@@ -12,6 +12,7 @@ import { ContactPage } from './pages/ContactPage'
 import { ShoppingCartPage } from './pages/ShoppingCart'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
         </Switch>
+        <ToastContainer />
       </PageContent>
       <Footer />
     </div>

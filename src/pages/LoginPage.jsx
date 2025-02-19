@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import { loginUser } from '../store/thunks';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function LoginPage() {
   const dispatch = useDispatch();
@@ -13,13 +15,13 @@ export function LoginPage() {
   const onSubmit = async (data) => {
     try {
       await dispatch(loginUser({ email: data.email, password: data.password }, data.rememberMe));
-      
+      toast.success("Welcome back!");
 
       const redirectTo = (location.state && location.state.from) ? location.state.from : '/';
       history.push(redirectTo);
     } catch (error) {
-     
       const errorMsg = error.response?.data?.message || "Login failed"
+      toast.error(errorMsg);
     }
   };
 
