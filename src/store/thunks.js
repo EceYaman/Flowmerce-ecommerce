@@ -16,10 +16,13 @@ export const fetchRoles = () => async (dispatch, getState) => {
 export const loginUser = (credentials, rememberMe) => async (dispatch) => {
   try {
     const response = await api.post('/login', credentials);
-    const { user, token } = response.data;
+    const { token, ...user } = response.data;
     dispatch(setUser(user));
     if (rememberMe) {
       localStorage.setItem('token', token);
+    }
+    else {
+      localStorage.removeItem('token');
     }
     return user; 
   } catch (error) {
