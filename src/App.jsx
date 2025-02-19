@@ -12,8 +12,18 @@ import { ContactPage } from './pages/ContactPage'
 import { ShoppingCartPage } from './pages/ShoppingCart'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
+import { ToastContainer } from 'react-toastify'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { verifyToken } from './store/thunks'
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(verifyToken());
+  }, [dispatch]);
+
   return (
     <div className='max-w-full m-0'>
       <Header />
@@ -29,6 +39,7 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
         </Switch>
+        <ToastContainer />
       </PageContent>
       <Footer />
     </div>

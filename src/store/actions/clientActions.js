@@ -2,6 +2,7 @@ export const SET_USER = 'client/SET_USER';
 export const SET_ROLES = 'client/SET_ROLES';
 export const SET_THEME = 'client/SET_THEME';
 export const SET_LANGUAGE = 'client/SET_LANGUAGE';
+export const CLEAR_USER = 'client/CLEAR_USER';
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -21,4 +22,8 @@ export const setTheme = (theme) => ({
 export const setLanguage = (language) => ({
   type: SET_LANGUAGE,
   payload: language,
+});
+
+export const clearUser = () => ({
+  type: CLEAR_USER,
 });

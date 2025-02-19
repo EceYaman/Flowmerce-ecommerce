@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { MenuIcon, SearchIcon, ShoppingCartIcon, Phone, Mail, Heart, User2Icon} from 'lucide-react'; 
 import { data } from '../../data';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Gravatar from 'react-gravatar';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuToggle = () => {
       setIsMenuOpen(!isMenuOpen);
   };
+
+  const user = useSelector((state) => state.client.user);
+  console.log('Header user:', user);
+  
 
   return (
     <>
@@ -45,17 +51,24 @@ export function Header() {
 
         <nav className='hidden  md:flex md:gap-x-8'>
         {data.header.menu.map((item, index) => (
-              <Link key={index} to={item.link} className="text-gray-text hover:text-dark-text">{item.text}</Link>
+              <Link key={index} to={item.link} className="text-gray-text hover:text-dark-text text-base">{item.text}</Link>
             ))}
         </nav>
 
         <nav className="flex gap-x-6">
-            <div className='flex items-center gap-x-1'>
-              <Link to="/signup"><User2Icon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
-              <Link to="/login" className='hidden md:block md:text-base md:text-primary md:font-medium'>Login</Link>
-              <span className='hidden md:block md:text-base md:text-primary md:font-medium'>/</span>
-              <Link to="/signup" className='hidden md:block md:text-base md:text-primary md:font-medium'>Register</Link>
-            </div>
+            {user && user.email ? (
+              <div className="flex items-center gap-x-1">
+                <Gravatar email={user.email} size={24} className="rounded-full" />
+                <span className="hidden md:block md:text-base md:text-primary">{user.name}</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-x-1">
+                <Link to="/login"><User2Icon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
+                <Link to="/login" className="hidden md:block md:text-base md:text-primary md:font-medium">Login</Link>
+                <span className="hidden md:block md:text-base md:text-primary md:font-medium">/</span>
+                <Link to="/signup" className="hidden md:block md:text-base md:text-primary md:font-medium">Register</Link>
+              </div>
+            )}
             <SearchIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" />
             <Link to="/shoppingcart"><ShoppingCartIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
             <Link to="/favorites"><Heart className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
