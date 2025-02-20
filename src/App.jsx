@@ -15,13 +15,17 @@ import { SignUpPage } from './pages/SignUpPage'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { verifyToken } from './store/thunks'
+import { fetchCategories, verifyToken } from './store/thunks'
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(verifyToken());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (

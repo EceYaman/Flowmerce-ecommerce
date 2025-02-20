@@ -1,5 +1,6 @@
 import api from '../services/api';
 import { clearUser, setRoles, setUser } from './actions/clientActions';
+import { setCategories } from './actions/productActions';
 
 export const fetchRoles = () => async (dispatch, getState) => {
   const { client } = getState();
@@ -12,6 +13,7 @@ export const fetchRoles = () => async (dispatch, getState) => {
     console.error("Error fetching roles:", error);
   }
 };
+
 
 export const loginUser = (credentials, rememberMe) => async (dispatch) => {
   try {
@@ -29,6 +31,7 @@ export const loginUser = (credentials, rememberMe) => async (dispatch) => {
     throw error;
   }
 };
+
 
 export const verifyToken = () => async (dispatch) => {
   const token = localStorage.getItem('token');
@@ -50,5 +53,19 @@ export const verifyToken = () => async (dispatch) => {
       delete api.defaults.headers.common['Authorization'];
       dispatch(clearUser());
     }
+  }
+};
+
+
+export const fetchCategories = () => async (dispatch, getState) => {
+  try {
+    const { product } = getState();
+    if (product.categories && product.categories.length > 0) {
+      return;
+    }
+    const response = await api.get('/categories');
+    dispatch(setCategories(response.data));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
   }
 };
