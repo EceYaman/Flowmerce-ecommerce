@@ -1,11 +1,28 @@
+import { useDispatch, useSelector } from "react-redux";
 import { data } from "../../data";
 import { BlogCard } from "../components/BlogCard";
 import { ProductCard } from "../components/ProductCard";
 import { ShopCard } from "../components/ShopCard";
 import { Slider } from "../components/Slider";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../store/thunks";
 
 export function HomePage() {
-  const limitedProducts = data.products.slice(0, 8);
+  const dispatch = useDispatch();
+  const { productList, fetchState } = useSelector((state) => state.product);
+  const [limitedProducts, setLimitedProducts] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    
+      setLimitedProducts(productList.slice(0, 8)); 
+    
+  }, [fetchState, productList]);
+
   return (
     <>
       <Slider slidesData={data.slides} />
@@ -38,10 +55,10 @@ export function HomePage() {
           <p className="text-gray-text text-base font-medium ">Problems trying to resolve the conflinct between</p>
         </div>
         <div className="flex flex-col p-8 gap-y-16 md:grid md:grid-cols-4 md:mx-24 md:gap-4 md:gap-y-16">
-          {limitedProducts.map((item) => (
-            <ProductCard key={item.id} item={item} />
-          ))}
-        </div>
+            {limitedProducts.map((item) => (
+              <ProductCard key={item.id} item={item} />
+            ))}
+          </div>
       </div>
 
       <Slider slidesData={data.slides2} />
