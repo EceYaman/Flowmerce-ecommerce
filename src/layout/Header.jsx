@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MenuIcon, SearchIcon, ShoppingCartIcon, Phone, Mail, Heart, User2Icon} from 'lucide-react'; 
+import { MenuIcon, SearchIcon, ShoppingCartIcon, Phone, Mail, Heart, User2Icon, ChevronDown} from 'lucide-react'; 
 import { data } from '../../data';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -7,12 +7,34 @@ import Gravatar from 'react-gravatar';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isShopOpen, setIsShopOpen] = useState(false);
+
   const handleMenuToggle = () => {
       setIsMenuOpen(!isMenuOpen);
   };
 
   const user = useSelector((state) => state.client.user);
-  console.log('Header user:', user);
+  const categories = useSelector((state) => state.product.categories);
+
+  const kadinAll = categories.filter(cat => cat.gender === 'k');
+  const erkekAll = categories.filter(cat => cat.gender === 'e');
+
+  const top5Kadin = [...kadinAll].sort((a, b) => b.rating - a.rating).slice(0, 5);
+  const top5Erkek = [...erkekAll].sort((a, b) => b.rating - a.rating).slice(0, 5);
+
+  const genderToText = (g) => (g === 'k' ? 'kadin' : 'erkek');
+
+  const formatTitleForRoute = (title) => {
+    return title
+      .toLowerCase()
+      .replace('ı', 'i')
+      .replace('ç', 'c')
+      .replace('ş', 's')
+      .replace('ğ', 'g')
+      .replace('ü', 'u')
+      .replace('ö', 'o')
+      .replace(/[^a-z0-9]/gi, ''); 
+  };
   
 
   return (
@@ -49,12 +71,71 @@ export function Header() {
         <div className='container max-w-full flex justify-between items-center p-8'>
         <img src={data.header.logo} className="w-32 h-auto"/>
 
-        <nav className='hidden  md:flex md:gap-x-8'>
-        {data.header.menu.map((item, index) => (
-              <Link key={index} to={item.link} className="text-gray-text hover:text-dark-text text-base">{item.text}</Link>
-            ))}
+        <nav className="hidden md:flex md:gap-x-8">
+          {data.header.menu.map((item, index) => {
+            if (item.text === 'Shop') {
+              return (
+                <div key={index} className="relative">
+                  <button
+                    onClick={() => setIsShopOpen(!isShopOpen)}
+                    className="text-gray-text hover:text-primary text-base focus:outline-none flex items-center gap-2"
+                  >
+                    {item.text}
+                    <ChevronDown className='w-5 h-5'/>
+                  </button>
+                  {isShopOpen && (
+                    <div className="absolute left-0 top-full mt-2 bg-white shadow-lg z-50 p-6 min-w-[200px] flex gap-x-16 pr-16">
+                      
+                      {/* KADIN KATEGORİLER */}
+                      <div>
+                        <h3 className="font-bold text-dark-text mb-3">Kadın</h3>
+                        <ul className="space-y-2">
+                          {top5Kadin.map(cat => {
+                            const routeTitle = formatTitleForRoute(cat.title);
+                            return (
+                              <li key={cat.id}>
+                                <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)}>
+                                  {cat.title}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                      {/* ERKEK KATEGORİLER */}
+                      <div>
+                        <h3 className="font-bold text-dark-text mb-3">Erkek</h3>
+                        <ul className="space-y-2">
+                          {top5Erkek.map(cat => {
+                            const routeTitle = formatTitleForRoute(cat.title);
+                            return (
+                              <li key={cat.id}>
+                                <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)} >
+                                  {cat.title}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                      
+                    </div>
+                  )}
+                </div>
+              );
+            } else {
+              return (
+                <Link
+                  key={index}
+                  to={item.link}
+                  className="text-gray-text hover:text-primary text-base"
+                >
+                  {item.text}
+                </Link>
+              );
+            }
+          })}
         </nav>
-
         <nav className="flex gap-x-6">
             {user && user.email ? (
               <div className="flex items-center gap-x-1">
