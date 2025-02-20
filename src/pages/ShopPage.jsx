@@ -1,11 +1,15 @@
 import { ChevronRight, LayoutGridIcon,Menu} from "lucide-react";
 import { data } from "../../data";
-import { ShopCard } from "../components/ShopCard";
 import { useState } from "react";
 import { ProductCard } from "../components/ProductCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { CategoryCard } from "../components/CategoryCard";
 
 export function ShopPage(){
+  const categories = useSelector((state) => state.product.categories);
+  const top5 = [...categories].sort((a, b) => b.rating - a.rating).slice(0, 5); 
+
     const limitedProducts = data.products.slice(0, 12);
     const [sortBy, setSortBy] = useState('popularity');
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,9 +31,9 @@ export function ShopPage(){
           <Link to="/shop" className="text-gray-text font-semibold text-lg">Shop</Link>
           </nav>
         </div>
-        <div className="flex flex-col gap-y-6 px-8 md:flex-row md:gap-x-4 md:px-32" >
-            {data.shop2.map((item) => (
-                <ShopCard key={item.id} item={item} />
+        <div className="flex flex-col gap-y-6 px-8 md:flex-row md:gap-x-4 md:px-32 " >
+            {top5.map((item) => (
+                <CategoryCard key={item.id} item={item}/>
             ))}
         </div>
         </div> 

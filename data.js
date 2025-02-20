@@ -438,55 +438,27 @@ export const data = {
       {
         id: 1,
         title: 'MEN',
-        image: "https://placehold.co/400x550",
+        img: "https://placehold.co/400x550",
       
       },
       {
         id: 2,
         title: 'WOMEN',
-        image: "https://placehold.co/400x550",
+        img: "https://placehold.co/400x550",
        
       },
       {
         id: 3,
         title: 'ACCESSORIES',
-        image: "https://placehold.co/400x265",
+        img: "https://placehold.co/400x265",
       },
       {
         id: 4,
         title: 'KIDS',
-        image: "https://placehold.co/400x265",
+        img: "https://placehold.co/400x265",
       },
     ],
 
-    shop2: [
-      {
-        id: 1,
-        title: 'CLOTHS',
-        subtitle: '5 Items',
-        image: "https://placehold.co/350x300",
-      
-      },
-      {
-        id: 2,
-        title: 'CLOTHS',
-        subtitle: '5 Items',
-        image: "https://placehold.co/350x300",
-       
-      },
-      {
-        id: 3,
-        title: 'CLOTHS',
-        subtitle: '5 Items',
-        image: "https://placehold.co/350x300",
-      },
-      {
-        id: 4,
-        title: 'CLOTHS',
-        subtitle: '5 Items',
-        image: "https://placehold.co/350x300",
-      },
-    ],
 
     blog: [
       {

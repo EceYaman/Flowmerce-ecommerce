@@ -16,15 +16,12 @@ export function Header() {
   const user = useSelector((state) => state.client.user);
   const categories = useSelector((state) => state.product.categories);
 
-  const kadinAll = categories.filter(cat => cat.gender === 'k');
-  const erkekAll = categories.filter(cat => cat.gender === 'e');
-
-  const top5Kadin = [...kadinAll].sort((a, b) => b.rating - a.rating).slice(0, 5);
-  const top5Erkek = [...erkekAll].sort((a, b) => b.rating - a.rating).slice(0, 5);
+  const kadinCategories = categories.filter(cat => cat.gender === 'k');
+  const erkekCategories = categories.filter(cat => cat.gender === 'e');
 
   const genderToText = (g) => (g === 'k' ? 'kadin' : 'erkek');
 
-  const formatTitleForRoute = (title) => {
+  const formatTitle = (title) => {
     return title
       .toLowerCase()
       .replace('ı', 'i')
@@ -90,8 +87,8 @@ export function Header() {
                       <div>
                         <h3 className="font-bold text-dark-text mb-3">Kadın</h3>
                         <ul className="space-y-2">
-                          {top5Kadin.map(cat => {
-                            const routeTitle = formatTitleForRoute(cat.title);
+                          {kadinCategories.map(cat => {
+                            const routeTitle = formatTitle(cat.title);
                             return (
                               <li key={cat.id}>
                                 <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)}>
@@ -106,8 +103,8 @@ export function Header() {
                       <div>
                         <h3 className="font-bold text-dark-text mb-3">Erkek</h3>
                         <ul className="space-y-2">
-                          {top5Erkek.map(cat => {
-                            const routeTitle = formatTitleForRoute(cat.title);
+                          {erkekCategories.map(cat => {
+                            const routeTitle = formatTitle(cat.title);
                             return (
                               <li key={cat.id}>
                                 <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)} >
