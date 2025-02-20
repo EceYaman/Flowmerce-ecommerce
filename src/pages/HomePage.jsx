@@ -6,6 +6,7 @@ import { ShopCard } from "../components/ShopCard";
 import { Slider } from "../components/Slider";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../store/thunks";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export function HomePage() {
   const dispatch = useDispatch();
@@ -18,9 +19,7 @@ export function HomePage() {
 
 
   useEffect(() => {
-    
       setLimitedProducts(productList.slice(0, 8)); 
-    
   }, [fetchState, productList]);
 
   return (
@@ -55,10 +54,14 @@ export function HomePage() {
           <p className="text-gray-text text-base font-medium ">Problems trying to resolve the conflinct between</p>
         </div>
         <div className="flex flex-col p-8 gap-y-16 md:grid md:grid-cols-4 md:mx-24 md:gap-4 md:gap-y-16">
-            {limitedProducts.map((item) => (
+          {fetchState === 'FETCHING' ? (
+            <LoadingSpinner />
+          ) : (
+            limitedProducts.map((item) => (
               <ProductCard key={item.id} item={item} />
-            ))}
-          </div>
+            ))
+          )}
+        </div>
       </div>
 
       <Slider slidesData={data.slides2} />

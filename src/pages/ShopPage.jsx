@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CategoryCard } from "../components/CategoryCard";
 import { fetchProducts } from "../store/thunks";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export function ShopPage(){
   const dispatch = useDispatch();
@@ -76,9 +77,13 @@ export function ShopPage(){
     </div>
         
     <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32">
-        {productList.map((item) => (
-          <ProductCard key={item.id} item={item} />
-        ))}
+        {fetchState === 'FETCHING' ? (
+          <LoadingSpinner />
+        ) : (
+          productList.map((item) => (
+            <ProductCard key={item.id} item={item} />
+          ))
+        )}
       </div>
 
         <div className="flex justify-center items-center mt-4 md:py-8">
