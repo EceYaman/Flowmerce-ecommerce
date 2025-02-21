@@ -34,7 +34,7 @@ export function ShopPage(){
         <main>
         <div className="bg-gray-light w-full pb-12">
         <div className="flex flex-col gap-y-12 items-center py-10 md:flex-row md:justify-between md:px-32">
-          <h3 className="h3">Shop</h3>
+          <h3 className="title">Shop</h3>
           <nav className='flex gap-x-4 '>
           <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
           <ChevronRight className="text-gray-text"/>

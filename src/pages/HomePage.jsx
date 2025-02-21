@@ -27,7 +27,7 @@ export function HomePage() {
       <Slider slidesData={data.slides} />
       <div className="py-16">
         <div className="flex flex-col gap-y-4 text-center max-w-60 mx-auto md:max-w-full md:pb-10">
-          <h3 className="h3">EDITOR'S PICK</h3>
+          <h3 className="title">EDITOR'S PICK</h3>
           <p className="text-gray-text text-lg">Problems trying to resolve the conflinct between</p>
         </div>
 
@@ -50,7 +50,7 @@ export function HomePage() {
       <div className="py-16">
         <div className="flex flex-col gap-y-4 text-center max-w-60 mx-auto md:max-w-full">
           <h4 className="text-gray-text text-2xl font-medium">Featured Products</h4>
-          <h3 className="h3">BESTSELLER PRODUCTS</h3>
+          <h3 className="title">BESTSELLER PRODUCTS</h3>
           <p className="text-gray-text text-base font-medium ">Problems trying to resolve the conflinct between</p>
         </div>
         <div className="flex flex-col p-8 gap-y-16 md:grid md:grid-cols-4 md:mx-24 md:gap-4 md:gap-y-16">
