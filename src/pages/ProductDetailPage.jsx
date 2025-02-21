@@ -40,7 +40,7 @@ export function ProductDetailPage() {
               <p className="text-base font-semibold text-gray-text">{product. review}</p>
             </div>
 
-            <h3 className="h3">{product.price.discount}</h3>
+            <h3 className="title">{product.price.discount}</h3>
             <p className="text-base font-semibold text-gray-text mb-8">
               Availability : <span className="text-primary">{product. stock}</span>
             </p>
@@ -75,7 +75,7 @@ export function ProductDetailPage() {
         <div className="flex flex-col gap-10 py-10 md:flex-row md:justify-between md:items-center">
           <img src={product.descImage} alt={product.title} className="rounded-lg"/>
           <div className="flex flex-col gap-6 md:max-w-[30%]">
-            <h3 className="h3 ">{product.descTitle}</h3>
+            <h3 className="title">{product.descTitle}</h3>
             {product.descText.map((item,index) => (
               <p key={index} className="text-base text-gray-text font-medium max-w-[85%] ">{item}</p>
             ))}
@@ -83,7 +83,7 @@ export function ProductDetailPage() {
 
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-6">
-              <h3 className="h3">{product.descTitle2}</h3>
+              <h3 className="title">{product.descTitle2}</h3>
               {product.descList.map((item,index) => (
                 <ul key={index}  className="flex">
                   <ChevronRight className="stroke-1 text-gray-text"/> 
@@ -93,7 +93,7 @@ export function ProductDetailPage() {
             </div>
 
             <div className="flex flex-col gap-6">
-              <h3 className="h3">{product.descTitle3}</h3>
+              <h3 className="title">{product.descTitle3}</h3>
               {product.descList2.map((item,index) => (
                 <ul key={index}  className="flex">
                   <ChevronRight className="stroke-1 text-gray-text"/> 
@@ -108,7 +108,7 @@ export function ProductDetailPage() {
 
 
       <div className="bg-gray-light w-full px-8 py-12 md:px-32">
-        <h3 className="h3">BESTSELLER PRODUCTS</h3>
+        <h3 className="title">BESTSELLER PRODUCTS</h3>
         <hr className="text-light-text border my-8"></hr>
         <div className="flex flex-col  gap-y-16 md:grid md:grid-cols-4  md:gap-4 md:gap-y-16">
           {limitedProducts.map((item, index) => (

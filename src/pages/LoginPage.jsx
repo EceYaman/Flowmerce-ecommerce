@@ -27,7 +27,7 @@ export function LoginPage() {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      <h3 className="h3 mb-4 text-center">Login</h3>
+      <h3 className="title mb-4 text-center">Login</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Email Alanı */}
         <div>

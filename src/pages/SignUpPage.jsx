@@ -57,7 +57,7 @@ export function SignUpPage() {
   return (
     <div className="w-full max-w-md mx-auto p-6">
       <div className="text-center mb-8">
-        <h3 className="h3 mb-2">Create your account</h3>
+        <h3 className="title mb-2">Create your account</h3>
         <p className="text-gray-text text-base">Join us and explore amazing products</p>
       </div>
 

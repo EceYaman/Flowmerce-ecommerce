@@ -1,13 +1,19 @@
 import { ChevronRight, LayoutGridIcon,Menu} from "lucide-react";
 import { data } from "../../data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CategoryCard } from "../components/CategoryCard";
+import { fetchProducts } from "../store/thunks";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export function ShopPage(){
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.product.categories);
+  const productList = useSelector((state) => state.product.productList);
+  const total = useSelector((state) => state.product.total);
+  const fetchState = useSelector((state) => state.product.fetchState);
   const top5 = [...categories].sort((a, b) => b.rating - a.rating).slice(0, 5); 
 
     const limitedProducts = data.products.slice(0, 12);
@@ -20,11 +26,15 @@ export function ShopPage(){
     const handlePrevious = () =>
       currentPage > 1 && setCurrentPage(currentPage - 1);
 
+    useEffect(() => {
+      dispatch(fetchProducts(12, (currentPage - 1) * 12));
+    }, [dispatch, currentPage]);
+
     return (
         <main>
         <div className="bg-gray-light w-full pb-12">
         <div className="flex flex-col gap-y-12 items-center py-10 md:flex-row md:justify-between md:px-32">
-          <h3 className="h3">Shop</h3>
+          <h3 className="title">Shop</h3>
           <nav className='flex gap-x-4 '>
           <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
           <ChevronRight className="text-gray-text"/>
@@ -66,13 +76,15 @@ export function ShopPage(){
       </div>
     </div>
         
-        <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32" >
-          {limitedProducts.map((item, index) => (
-            <div key={item.id} className={`${index >= 4 ? 'hidden md:block' : ''}`}>
-              <ProductCard item={item}/>
-            </div>
-          ))}
-        </div>
+    <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32">
+        {fetchState === 'FETCHING' ? (
+          <LoadingSpinner />
+        ) : (
+          productList.map((item) => (
+            <ProductCard key={item.id} item={item} />
+          ))
+        )}
+      </div>
 
         <div className="flex justify-center items-center mt-4 md:py-8">
       <button
