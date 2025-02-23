@@ -10,7 +10,7 @@ export function ProductCard({ item }){
             <h5 className="card-title">{item.name}</h5>
             <h6 className="text-base text-gray-text">{item.description}</h6>
             <div className="flex justify-center gap-2">
-                <h6 className="text-xl font-semibold text-secondary">{item.price}₺</h6>
+                <h6 className="text-xl font-semibold text-primary">{item.price}₺</h6>
             </div>
             <div className="flex justify-center gap-2">
                 {colors.map((item, index) => (
