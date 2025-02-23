@@ -1,6 +1,6 @@
 import { ChevronRight, LayoutGridIcon,Menu} from "lucide-react";
 import { data } from "../../data";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
 import { useParams,Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +16,12 @@ export function ShopPage(){
   const total = useSelector((state) => state.product.total);
   const fetchState = useSelector((state) => state.product.fetchState);
 
-  const top5 = [...categories]
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 5);
+  const top5 = useMemo(() => 
+    [...categories]
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 5),
+    [categories]
+  );
 
   const limit = 12;
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,16 +33,22 @@ export function ShopPage(){
   const [sort, setSort] = useState("");
   const [filterText, setFilterText] = useState("");
 
+  const fetchParams = useMemo(() => ({
+    limit,
+    offset,
+    category: categoryId,
+    sort,
+    filter: filterText,
+  }), [limit, offset, categoryId, sort, filterText]);
   useEffect(() => {
-    const query = {
-      limit,
-      offset,
-      ...(categoryId && { category: categoryId }),
-      ...(sort && { sort }),
-      ...(filterText && { filter: filterText }),
-    };
-    dispatch(fetchProducts(query));
-  }, [dispatch, categoryId, sort, filterText, offset]);
+    dispatch(fetchProducts(fetchParams));
+  }, [dispatch, fetchParams]);
+
+  const handleFilter = useCallback(() => {
+    setFilterText(tempFilter);
+    setSort(tempSort);
+    setCurrentPage(1); 
+  }, [tempFilter, tempSort]);
 
   const handleNext = () =>
     currentPage < totalPages && setCurrentPage(currentPage + 1);
@@ -93,10 +102,7 @@ export function ShopPage(){
           </select>
           <button 
             className="btn bg-primary hover:bg-blue-700 text-white"
-            onClick={() => {
-              setFilterText(tempFilter);
-              setSort(tempSort);
-            }}
+            onClick={handleFilter}
           >
             Filter
           </button>
