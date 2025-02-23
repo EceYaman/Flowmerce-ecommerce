@@ -81,41 +81,45 @@ export function Header() {
                     <ChevronDown className='w-5 h-5'/>
                   </button>
                   {isShopOpen && (
-                    <div className="absolute left-0 top-full mt-2 bg-white shadow-lg z-50 p-6 min-w-[200px] flex gap-x-16 pr-16">
+                    <div className='absolute left-0 top-full mt-2 bg-white shadow-lg z-50 p-6 min-w-[200px] pr-20'>
                       
-                      {/* KADIN KATEGORİLER */}
-                      <div>
-                        <h3 className="font-bold text-dark-text mb-3">Kadın</h3>
-                        <ul className="space-y-2">
-                          {kadinCategories.map(cat => {
-                            const routeTitle = formatTitle(cat.title);
-                            return (
-                              <li key={cat.id}>
-                                <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)}>
-                                  {cat.title}
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
+                      <div className="flex gap-x-16 ">
+                        {/* KADIN KATEGORİLER */}
+                        <div>
+                        <Link to="/shop/kadin" className="font-bold text-dark-text mb-3 block hover:text-primary">Kadın</Link>
+                          <ul className="space-y-2">
+                            {kadinCategories.map(cat => {
+                              const routeTitle = formatTitle(cat.title);
+                              return (
+                                <li key={cat.id}>
+                                  <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)}>
+                                    {cat.title}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                        {/* ERKEK KATEGORİLER */}
+                        <div>
+                          <Link to="/shop/erkek" className="font-bold text-dark-text mb-3 block hover:text-primary">Erkek</Link>
+                          <ul className="space-y-2">
+                            {erkekCategories.map(cat => {
+                              const routeTitle = formatTitle(cat.title);
+                              return (
+                                <li key={cat.id}>
+                                  <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)} >
+                                    {cat.title}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                        
                       </div>
-                      {/* ERKEK KATEGORİLER */}
-                      <div>
-                        <h3 className="font-bold text-dark-text mb-3">Erkek</h3>
-                        <ul className="space-y-2">
-                          {erkekCategories.map(cat => {
-                            const routeTitle = formatTitle(cat.title);
-                            return (
-                              <li key={cat.id}>
-                                <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)} >
-                                  {cat.title}
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                      
+
+                      <Link to="/shop" className="font-bold text-dark-text block hover:text-primary mt-6">Tüm Ürünleri Gör</Link>
                     </div>
                   )}
                 </div>

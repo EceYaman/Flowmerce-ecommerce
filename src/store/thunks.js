@@ -71,17 +71,20 @@ export const fetchCategories = () => async (dispatch, getState) => {
 };
 
 
-export const fetchProducts = (limit = 12, offset = 0) => async (dispatch) => {
-  dispatch(setFetchState('FETCHING')); 
+export const fetchProducts = ({ limit = 12, offset = 0, category, sort, filter } = {}) => async (dispatch) => {
+  dispatch(setFetchState('FETCHING'));
   try {
-    const response = await api.get('/products', {
-      params: { limit, offset },
-    });
+    const params = { limit, offset };
+    if (category) params.category = category;
+    if (sort) params.sort = sort;
+    if (filter) params.filter = filter;
+    
+    const response = await api.get('/products', { params });
     dispatch(setTotal(response.data.total));
     dispatch(setProductList(response.data.products));
-    dispatch(setFetchState('FETCHED')); 
+    dispatch(setFetchState('FETCHED'));
   } catch (error) {
     console.error("Error fetching products:", error);
-    dispatch(setFetchState('ERROR')); 
+    dispatch(setFetchState('ERROR'));
   }
 };
