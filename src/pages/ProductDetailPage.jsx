@@ -1,14 +1,28 @@
 import { ChevronRight, EyeIcon, Heart, ShoppingCartIcon, StarHalf, StarIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Slider } from "../components/Slider";
 import { data } from "../../data";
-import { useParams } from "react-router-dom";
 import { ProductCard } from "../components/ProductCard";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductDetail } from "../store/thunks";
+import { useEffect } from "react";
 
 export function ProductDetailPage() {
-  const limitedProducts = data.products.slice(0, 8);
-  const { id } = useParams(); 
-  const product = data.products.find((product) => product.id === parseInt(id)); 
+  const { productId } = useParams(); // URL'den gelen productId
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.productDetail);
+  const fetchState = useSelector((state) => state.product.fetchState);
+
+  useEffect(() => {
+    if (productId) {
+      dispatch(fetchProductDetail(productId));
+    }
+  }, [dispatch, productId]);
+
+  if (fetchState === "FETCHING") {
+    return <LoadingSpinner />;
+  }
 
   if (!product) {
     return <div>Product not found!</div>;
@@ -24,36 +38,18 @@ export function ProductDetailPage() {
         </nav>
 
         <div className="flex flex-col gap-y-8 md:flex-row  md:gap-x-16 md:items-center">
-          <Slider slidesData={product.slides}/>
+          <img src={product.images[0]?.url} alt="Product" />
 
           <div className="">
-            <h5 className="card-title">{product.title}</h5>
-
-            <div className="flex gap-4 my-4">
-              <div className="flex gap-1">
-                <StarIcon className="stroke-yellow-500 fill-yellow-500 stroke-1 w-5"/>
-                <StarIcon className="stroke-yellow-500 fill-yellow-500 stroke-1 w-5"/>
-                <StarIcon className="stroke-yellow-500 fill-yellow-500 stroke-1 w-5"/>
-                <StarIcon className="stroke-yellow-500 fill-yellow-500 stroke-1 w-5"/>
-                <StarIcon className="stroke-yellow-500 stroke-1 w-5"/>
-              </div>
-              <p className="text-base font-semibold text-gray-text">{product. review}</p>
-            </div>
-
-            <h3 className="title">{product.price.discount}</h3>
+            <h5 className="card-title">{product.name}</h5>
+            <p className="text-base font-semibold text-gray-text">{product. review}</p>
+            <h3 className="title">{product.price}</h3>
             <p className="text-base font-semibold text-gray-text mb-8">
               Availability : <span className="text-primary">{product. stock}</span>
             </p>
             <p className="text-base text-gray-text font-medium max-w-[85%]">{product.info}</p>
             <hr className="text-light-text border my-4"></hr>
-            <div className="flex gap-2">
-              {product.colors.map((item, index) => (
-              <span
-                  key={index}
-                  className={`w-7 h-7 rounded-full ${item}`} 
-              />
-              ))}
-            </div>
+            
             <div className="flex gap-6 items-center py-12">
               <button className="btn bg-primary">Select Options</button>
               <Heart className="stroke-1"/>
@@ -76,30 +72,18 @@ export function ProductDetailPage() {
           <img src={product.descImage} alt={product.title} className="rounded-lg"/>
           <div className="flex flex-col gap-6 md:max-w-[30%]">
             <h3 className="title">{product.descTitle}</h3>
-            {product.descText.map((item,index) => (
-              <p key={index} className="text-base text-gray-text font-medium max-w-[85%] ">{item}</p>
-            ))}
+            
           </div>
 
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-6">
               <h3 className="title">{product.descTitle2}</h3>
-              {product.descList.map((item,index) => (
-                <ul key={index}  className="flex">
-                  <ChevronRight className="stroke-1 text-gray-text"/> 
-                  <li className="text-base text-gray-text font-medium">{item}</li>
-                </ul>
-              ))}
+              
             </div>
 
             <div className="flex flex-col gap-6">
               <h3 className="title">{product.descTitle3}</h3>
-              {product.descList2.map((item,index) => (
-                <ul key={index}  className="flex">
-                  <ChevronRight className="stroke-1 text-gray-text"/> 
-                  <li className="text-base text-gray-text font-medium">{item}</li>
-                </ul>
-              ))}
+              
             </div>
           </div>
         </div>
@@ -111,11 +95,7 @@ export function ProductDetailPage() {
         <h3 className="title">BESTSELLER PRODUCTS</h3>
         <hr className="text-light-text border my-8"></hr>
         <div className="flex flex-col  gap-y-16 md:grid md:grid-cols-4  md:gap-4 md:gap-y-16">
-          {limitedProducts.map((item, index) => (
-            <div key={item.id} className={`${index >= 4 ? 'hidden md:block' : ''}`}>
-              <ProductCard item={item}/>
-            </div>
-          ))}
+       
         </div>
       </div>
       

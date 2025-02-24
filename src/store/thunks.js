@@ -1,6 +1,6 @@
 import api from '../services/api';
 import { clearUser, setRoles, setUser } from './actions/clientActions';
-import { setCategories, setFetchState, setProductList, setTotal } from './actions/productActions';
+import { setCategories, setFetchState, setProductDetail, setProductList, setTotal } from './actions/productActions';
 
 export const fetchRoles = () => async (dispatch, getState) => {
   const { client } = getState();
@@ -86,5 +86,15 @@ export const fetchProducts = ({ limit = 12, offset = 0, category, sort, filter }
   } catch (error) {
     console.error("Error fetching products:", error);
     dispatch(setFetchState('ERROR'));
+  }
+};
+
+
+export const fetchProductDetail = (productId) => async (dispatch) => {
+  try {
+    const response = await api.get(`/products/${productId}`);
+    dispatch(setProductDetail(response.data));
+  } catch (error) {
+    console.error("Error fetching product details:", error);
   }
 };

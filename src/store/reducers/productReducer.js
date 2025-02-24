@@ -6,6 +6,7 @@ import {
     SET_LIMIT,
     SET_OFFSET,
     SET_FILTER,
+    SET_PRODUCT_DETAIL,
   } from '../actions/productActions';
   
   const initialState = {
@@ -16,6 +17,7 @@ import {
     offset: 0,           
     filter: '',         
     fetchState: 'NOT_FETCHED', 
+    productDetail: "",
   };
   
   const productReducer = (state = initialState, action) => {
@@ -34,6 +36,8 @@ import {
         return { ...state, offset: action.payload };
       case SET_FILTER:
         return { ...state, filter: action.payload };
+      case SET_PRODUCT_DETAIL:
+        return { ...state, productDetail: action.payload };
       default:
         return state;
     }

@@ -15,7 +15,7 @@ import { SignUpPage } from './pages/SignUpPage'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchCategories, verifyToken } from './store/thunks'
+import { fetchCategories, fetchProducts, verifyToken } from './store/thunks'
 
 function App() {
   const dispatch = useDispatch();
@@ -34,8 +34,13 @@ function App() {
       <PageContent>
         <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/shop/:gender?/:categoryName?/:categoryId?" component={ShopPage} />
-        <Route path="/product/:id" component={ProductDetailPage} /> 
+        <Route
+          path="/shop/:gender/:categoryName/:categoryId/:productName/:productId"
+          component={ProductDetailPage}
+        />
+        <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/shop/:gender" component={ShopPage} />
+        <Route exact path="/shop/:gender/:categoryName/:categoryId" component={ShopPage} />
         <Route path="/about" component={AboutUsPage} />
         <Route path="/team" component={TeamPage} />
         <Route path="/contact" component={ContactPage} />
