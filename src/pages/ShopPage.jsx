@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CategoryCard } from "../components/CategoryCard";
 import { fetchProducts } from "../store/thunks";
 import { LoadingSpinner } from "../components/LoadingSpinner";
+import ReactPaginate from "react-paginate";
 
 export function ShopPage(){
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ export function ShopPage(){
   );
 
   const limit = 12;
-  const [currentPage, setCurrentPage] = useState(1);
-  const offset = (currentPage - 1) * limit;
-  const totalPages = 3;
+  const [currentPage, setCurrentPage] = useState(0);
+  const offset = currentPage * limit;
+  const pageCount = total ? Math.ceil(total / limit) : 0;
 
   const [tempSort, setTempSort] = useState("");
   const [tempFilter, setTempFilter] = useState("");
@@ -44,16 +45,20 @@ export function ShopPage(){
     dispatch(fetchProducts(fetchParams));
   }, [dispatch, fetchParams]);
 
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [categoryId]);
+
   const handleFilter = useCallback(() => {
     setFilterText(tempFilter);
     setSort(tempSort);
-    setCurrentPage(1); 
+    setCurrentPage(0); 
   }, [tempFilter, tempSort]);
 
-  const handleNext = () =>
-    currentPage < totalPages && setCurrentPage(currentPage + 1);
-  const handlePrevious = () =>
-    currentPage > 1 && setCurrentPage(currentPage - 1);
+  const handlePageClick = (event) => {
+    const selectedPage = event.selected; 
+    setCurrentPage(selectedPage);
+  };
 
   return (
     <main>
@@ -127,42 +132,23 @@ export function ShopPage(){
         )}
       </div>
 
-      <div className="flex justify-center items-center mt-4 md:py-8">
-        <button
-          className={`px-4 py-2 border rounded-l-lg ${
-            currentPage === 1 ? "text-gray-400 border-gray-300" : "text-primary"
-          }`}
-          disabled={currentPage === 1}
-          onClick={handlePrevious}
-        >
-          First
-        </button>
-
-        {[...Array(totalPages)].map((_, index) => (
-          <button
-            key={index}
-            className={`px-4 py-2 border ${
-              currentPage === index + 1
-                ? "bg-primary text-white border-primary"
-                : "text-primary border-gray-300"
-            }`}
-            onClick={() => setCurrentPage(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
-
-        <button
-          className={`px-4 py-2 border rounded-r-lg ${
-            currentPage === totalPages
-              ? "text-gray-400 border-gray-300"
-              : "text-primary"
-          }`}
-          disabled={currentPage === totalPages}
-          onClick={handleNext}
-        >
-          Next
-        </button>
+      <div className="flex justify-center items-center my-10 cursor-pointer max-w-[90%] mx-auto ">
+        {pageCount > 0 && (
+          <ReactPaginate
+          breakLabel="..."
+          nextLabel="Next>"
+          previousLabel="<Previous"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={1}
+          pageCount={pageCount}
+          containerClassName="flex items-center"
+          pageLinkClassName="p-2 border border-light-text text-primary"
+          previousLinkClassName="p-2 border border-primary text-primary rounded-l-lg"
+          nextLinkClassName="p-2 border border-primary text-primary rounded-r-lg"
+          activeLinkClassName="bg-primary text-white p-2 border border-primary"
+          breakLinkClassName="p-2 border border-light-text text-light-text"
+        />
+        )}
       </div>
 
       <div className="flex flex-col items-center space-y-8 mt-24 md:flex-row md:justify-between md:px-32">
