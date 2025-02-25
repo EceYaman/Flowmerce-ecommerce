@@ -35,19 +35,28 @@ export function Header() {
       .replace(/[^a-z0-9]/gi, ''); 
   };
   
-  const closeTimerRef = useRef(null);
+  const closeCartTimerRef = useRef(null);
+  const closeShopTimerRef = useRef(null);
 
-  const openCart = () => {
-    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    setIsCartOpen(true);
+  const toggleDropdown = (setState, ref, isOpen) => {
+    if (isOpen) {
+      if (ref.current) clearTimeout(ref.current);
+      setState(true);
+    } else {
+      ref.current = setTimeout(() => {
+        setState(false);
+      }, 300);
+    }
   };
 
-  const closeCart = () => {
-    // 300ms gecikme ile dropdown kapansın
-    closeTimerRef.current = setTimeout(() => {
-      setIsCartOpen(false);
-    }, 300);
-  };
+  // Cart aç/kapat
+  const openCart = () => toggleDropdown(setIsCartOpen, closeCartTimerRef, true);
+  const closeCart = () => toggleDropdown(setIsCartOpen, closeCartTimerRef, false);
+
+  // Shop aç/kapat
+  const openShop = () => toggleDropdown(setIsShopOpen, closeShopTimerRef, true);
+  const closeShop = () => toggleDropdown(setIsShopOpen, closeShopTimerRef, false);
+
 
   return (
     <>
@@ -83,74 +92,95 @@ export function Header() {
         <div className='container max-w-full flex justify-between items-center p-8'>
         <img src={data.header.logo} className="w-32 h-auto"/>
 
-        <nav className="hidden md:flex md:gap-x-8">
-          {data.header.menu.map((item, index) => {
-            if (item.text === 'Shop') {
-              return (
-                <div key={index} className="relative">
-                  <button
-                    onClick={() => setIsShopOpen(!isShopOpen)}
-                    className="text-gray-text hover:text-primary text-base focus:outline-none flex items-center gap-2"
-                  >
-                    {item.text}
-                    <ChevronDown className='w-5 h-5'/>
-                  </button>
-                  {isShopOpen && (
-                    <div className='absolute left-0 top-full mt-2 bg-white shadow-lg z-50 p-6 min-w-[200px] pr-20'>
-                      
-                      <div className="flex gap-x-16 ">
-                        {/* KADIN KATEGORİLER */}
-                        <div>
-                        <Link to="/shop/kadin" className="font-bold text-dark-text mb-3 block hover:text-primary">Kadın</Link>
-                          <ul className="space-y-2">
-                            {kadinCategories.map(cat => {
-                              const routeTitle = formatTitle(cat.title);
-                              return (
-                                <li key={cat.id}>
-                                  <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)}>
-                                    {cat.title}
-                                  </Link>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                        {/* ERKEK KATEGORİLER */}
-                        <div>
-                          <Link to="/shop/erkek" className="font-bold text-dark-text mb-3 block hover:text-primary">Erkek</Link>
-                          <ul className="space-y-2">
-                            {erkekCategories.map(cat => {
-                              const routeTitle = formatTitle(cat.title);
-                              return (
-                                <li key={cat.id}>
-                                  <Link to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`} className="text-gray-text hover:text-primary" onClick={() => setIsShopOpen(false)} >
-                                    {cat.title}
-                                  </Link>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                        
-                      </div>
-
-                      <Link to="/shop" className="font-bold text-dark-text block hover:text-primary mt-6">Tüm Ürünleri Gör</Link>
-                    </div>
-                  )}
-                </div>
-              );
-            } else {
-              return (
-                <Link
-                  key={index}
-                  to={item.link}
-                  className="text-gray-text hover:text-primary text-base"
-                >
+        <nav className="hidden md:flex md:gap-x-8" onMouseEnter={openShop} onMouseLeave={closeShop}>
+        {data.header.menu.map((item, index) => {
+          if (item.text === 'Shop') {
+            return (
+              <div
+                key={index}
+                className="relative"
+                onMouseEnter={() => setIsShopOpen(true)}
+                onMouseLeave={() => setIsShopOpen(false)}
+              >
+                {/* Buton yerine sade metin olarak gösteriyoruz */}
+                <div className="flex items-center gap-2 text-gray-text hover:text-primary text-base cursor-pointer">
                   {item.text}
-                </Link>
-              );
-            }
-          })}
+                  <ChevronDown className="w-5 h-5" />
+                </div>
+                {isShopOpen && (
+                  <div className="absolute left-0 top-full bg-white shadow-lg z-50 p-6 min-w-[200px] pr-20">
+                    <div className="flex gap-x-16">
+                      {/* Kadın Kategoriler */}
+                      <div>
+                        <Link
+                          to="/shop/kadin"
+                          className="font-bold text-dark-text mb-3 block hover:text-primary"
+                        >
+                          Kadın
+                        </Link>
+                        <ul className="space-y-2">
+                          {kadinCategories.map((cat) => {
+                            const routeTitle = formatTitle(cat.title);
+                            return (
+                              <li key={cat.id}>
+                                <Link
+                                  to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`}
+                                  className="text-gray-text hover:text-primary"
+                                >
+                                  {cat.title}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                      {/* Erkek Kategoriler */}
+                      <div>
+                        <Link
+                          to="/shop/erkek"
+                          className="font-bold text-dark-text mb-3 block hover:text-primary"
+                        >
+                          Erkek
+                        </Link>
+                        <ul className="space-y-2">
+                          {erkekCategories.map((cat) => {
+                            const routeTitle = formatTitle(cat.title);
+                            return (
+                              <li key={cat.id}>
+                                <Link
+                                  to={`/shop/${genderToText(cat.gender)}/${routeTitle}/${cat.id}`}
+                                  className="text-gray-text hover:text-primary"
+                                >
+                                  {cat.title}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    </div>
+                    <Link
+                      to="/shop"
+                      className="font-bold text-dark-text block hover:text-primary mt-6"
+                    >
+                      Tüm Ürünleri Gör
+                    </Link>
+                  </div>
+                )}
+              </div>
+            );
+          } else {
+            return (
+              <Link
+                key={index}
+                to={item.link}
+                className="text-gray-text hover:text-primary text-base"
+              >
+                {item.text}
+              </Link>
+            );
+          }
+        })}
         </nav>
         <nav className="flex gap-x-6">
             {user && user.email ? (
