@@ -1,17 +1,38 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart, toggleCartItemSelection, updateCartQuantity } from "../store/actions/shoppingCartActions";
+import { Trash } from "lucide-react";
 
 export function ShoppingCartPage() {
+    const dispatch = useDispatch();
     const cart = useSelector((state) => state.shoppingCart.cart);
 
     // Toplam tutar ve toplam ürün adedini hesaplayalım
     const { totalPrice, totalCount } = cart.reduce(
       (acc, item) => {
-        acc.totalPrice += item.product.price * item.count;
-        acc.totalCount += item.count;
+        if (item.checked) {
+          acc.totalPrice += item.product.price * item.count;
+          acc.totalCount += item.count;
+        }
         return acc;
       },
       { totalPrice: 0, totalCount: 0 }
     );
+  
+    const handleIncrease = (productId, currentCount) => {
+      dispatch(updateCartQuantity(productId, currentCount + 1));
+    };
+  
+    const handleDecrease = (productId, currentCount) => {
+      if (currentCount > 1) {
+        dispatch(updateCartQuantity(productId, currentCount - 1));
+      } else {
+        dispatch(removeFromCart(productId));
+      }
+    };
+  
+    const handleToggle = (productId) => {
+      dispatch(toggleCartItemSelection(productId));
+    };
   
     return (
       <div className="px-8 py-4 md:px-32">
@@ -23,45 +44,58 @@ export function ShoppingCartPage() {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-gray-light border-b border-light-text text-dark-text">
+                  <th className="py-3 px-4">Seç</th>
                   <th className="py-3 px-4">Ürün</th>
                   <th className="py-3 px-4">Fiyat</th>
                   <th className="py-3 px-4">Adet</th>
                   <th className="py-3 px-4">Toplam</th>
+                  <th className="py-3 px-4">İşlem</th>
                 </tr>
               </thead>
               <tbody>
-                {cart.map(({ product, count }) => {
-                  const lineTotal = product.price * count;
-                  return (
-                    <tr key={product.id} className="border-b border-light-text">
-                      <td className="py-3 px-4 flex items-center gap-4">
-                        {/* Ürün Resmi */}
-                        <img
-                          src={product.images?.[0]?.url}
-                          alt={product.name}
-                          className="w-16 h-16 object-cover"
-                        />
-                        {/* Ürün Adı */}
-                        <div>
-                          <p className="font-medium text-dark-text">{product.name}</p>
-                        </div>
-                      </td>
-                      {/* Birim Fiyat */}
-                      <td className="py-3 px-4 text-dark-text">
-                        {product.price.toFixed(2)}₺
-                      </td>
-                      {/* Adet */}
-                      <td className="py-3 px-4 text-dark-text">
-                        {count}
-                      </td>
-                      {/* Satır Toplamı */}
-                      <td className="py-3 px-4 text-dark-text">
-                        {lineTotal.toFixed(2)}₺
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
+              {cart.map(({ product, count, checked }) => {
+                const lineTotal = product.price * count;
+                return (
+                  <tr key={product.id} className="border-b border-light-text">
+                    <td className="py-3 px-4">
+                      <input 
+                        type="checkbox" 
+                        checked={checked} 
+                        onChange={() => handleToggle(product.id)}
+                      />
+                    </td>
+                    <td className="py-3 px-4 flex items-center gap-4">
+                      <img
+                        src={product.images?.[0]?.url}
+                        alt={product.name}
+                        className="w-16 h-16 object-cover"
+                      />
+                      <div>
+                        <p className="font-medium text-dark-text">{product.name}</p>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-dark-text">
+                      {product.price.toFixed(2)}₺
+                    </td>
+                    <td className="py-3 px-4 text-dark-text">
+                      <div className="flex items-center gap-2">
+                        <button onClick={() => handleDecrease(product.id, count)} className="px-2 py-1 border rounded">-</button>
+                        <span>{count}</span>
+                        <button onClick={() => handleIncrease(product.id, count)} className="px-2 py-1 border rounded">+</button>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-dark-text">
+                      {lineTotal.toFixed(2)}₺
+                    </td>
+                    <td className="py-3 px-4 text-dark-text">
+                      <button onClick={() => dispatch(removeFromCart(product.id))}>
+                        <Trash className="w-4"/>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
             </table>
           </div>
   
