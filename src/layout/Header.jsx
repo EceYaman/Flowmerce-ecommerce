@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { MenuIcon, SearchIcon, ShoppingCartIcon, Phone, Mail, Heart, User2Icon, ChevronDown} from 'lucide-react'; 
 import { data } from '../../data';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Gravatar from 'react-gravatar';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleMenuToggle = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -15,6 +16,7 @@ export function Header() {
 
   const user = useSelector((state) => state.client.user);
   const categories = useSelector((state) => state.product.categories);
+  const cart = useSelector((state) => state.shoppingCart.cart);
 
   const kadinCategories = categories.filter(cat => cat.gender === 'k');
   const erkekCategories = categories.filter(cat => cat.gender === 'e');
@@ -33,6 +35,19 @@ export function Header() {
       .replace(/[^a-z0-9]/gi, ''); 
   };
   
+  const closeTimerRef = useRef(null);
+
+  const openCart = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setIsCartOpen(true);
+  };
+
+  const closeCart = () => {
+    // 300ms gecikme ile dropdown kapansın
+    closeTimerRef.current = setTimeout(() => {
+      setIsCartOpen(false);
+    }, 300);
+  };
 
   return (
     <>
@@ -152,7 +167,65 @@ export function Header() {
               </div>
             )}
             <SearchIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" />
-            <Link to="/shoppingcart"><ShoppingCartIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
+            
+            <div
+              className="relative"
+              onMouseEnter={openCart}
+              onMouseLeave={closeCart}
+            >
+              {/* Sepet İkonu */}
+              <div className="cursor-pointer relative">
+                <ShoppingCartIcon className="w-6 h-6 stroke-1 stroke-primary" />
+                {cart?.length > 0 && (
+                  <span className="absolute top-[-6px] right-[-6px] bg-alert text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                    {cart.length}
+                  </span>
+                )}
+              </div>
+
+              {/* Açılır Dropdown */}
+              {isCartOpen && (
+                <div
+                  className="absolute right-0 top-full mt-2 w-80 bg-white shadow-md z-50 p-4"
+                  onMouseEnter={openCart}  // Dropdown'a da mouse enter ekleyerek kapanmayı iptal ediyoruz
+                  onMouseLeave={closeCart}
+                >
+                  <h3 className="font-bold mb-2">Sepetim ({cart.length} Ürün)</h3>
+                  <div className="flex flex-col gap-4 max-h-64 overflow-y-auto">
+                    {cart.map(({ product, count }) => (
+                      <div key={product.id} className="flex gap-2">
+                        <img
+                          src={product.images?.[0]?.url}
+                          alt={product.name}
+                          className="w-14 h-14 object-cover"
+                        />
+                        <div className="flex flex-col">
+                          <p className="font-medium">{product.name}</p>
+                          <p className="text-sm text-gray-500">
+                            {product.price.toFixed(2)} TL x {count}
+                          </p>
+                          <p className="text-sm text-gray-900 font-semibold">
+                            {(product.price * count).toFixed(2)} TL
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex justify-between items-center">
+                    <Link
+                      to="/shoppingcart"
+                      className="bg-gray-200 text-dark-text px-4 py-2 rounded hover:bg-gray-300"
+                    >
+                      Sepete Git
+                    </Link>
+                    <button className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700">
+                      Siparişi Tamamla
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link to="/favorites"><Heart className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
             <MenuIcon className="cursor-pointer md:hidden stroke-1 stroke-primary md:w-5" onClick={handleMenuToggle} />
         </nav>
