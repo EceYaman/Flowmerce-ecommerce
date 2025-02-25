@@ -66,7 +66,7 @@ export function ProductCard({ item }){
         </Link>
         {isHovered && (
             cartItem ? (
-            <div className="absolute inset-0 z-50 btn bg-primary flex items-center justify-center text-white text-lg gap-1">
+            <div className="absolute top-[56%] inset-0 z-50 btn bg-primary flex items-center justify-center text-white text-lg gap-1">
                 <button onClick={handleDecrease} className="px-3 py-1 text-lg">-</button>
                 <span>{cartItem.count}</span>
                 <button onClick={handleIncrease} className="px-3 py-1 text-lg">+</button>
@@ -77,7 +77,7 @@ export function ProductCard({ item }){
             ) : (
             <button 
                 onClick={handleAddToCart}
-                className="absolute inset-0 z-50 btn bg-primary flex items-center justify-center text-white text-lg gap-1"
+                className="absolute top-[56%] inset-0 z-50 btn bg-primary flex items-center justify-center text-white text-lg gap-1"
             >
                 Add to Cart <ShoppingCartIcon className="stroke-2 w-4" />
             </button>

@@ -205,7 +205,9 @@ export function Header() {
             >
               {/* Sepet İkonu */}
               <div className="cursor-pointer relative">
-                <ShoppingCartIcon className="w-6 h-6 stroke-1 stroke-primary" />
+                <Link to="/shoppingcart">
+                  <ShoppingCartIcon className="w-6 h-6 stroke-1 stroke-primary" />
+                </Link>
                 {cart?.length > 0 && (
                   <span className="absolute top-[-6px] right-[-6px] bg-alert text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
                     {cart.length}

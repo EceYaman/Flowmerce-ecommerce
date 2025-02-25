@@ -49,7 +49,7 @@ export function ShoppingCartPage() {
                   <th className="py-3 px-4">Fiyat</th>
                   <th className="py-3 px-4">Adet</th>
                   <th className="py-3 px-4">Toplam</th>
-                  <th className="py-3 px-4">İşlem</th>
+                  <th className="py-3 px-4"></th>
                 </tr>
               </thead>
               <tbody>
@@ -79,9 +79,9 @@ export function ShoppingCartPage() {
                     </td>
                     <td className="py-3 px-4 text-dark-text">
                       <div className="flex items-center gap-2">
-                        <button onClick={() => handleDecrease(product.id, count)} className="px-2 py-1 border rounded">-</button>
+                        <button onClick={() => handleDecrease(product.id, count)} className="w-5 py-1 border rounded">-</button>
                         <span>{count}</span>
-                        <button onClick={() => handleIncrease(product.id, count)} className="px-2 py-1 border rounded">+</button>
+                        <button onClick={() => handleIncrease(product.id, count)} className="w-5 py-1 border rounded">+</button>
                       </div>
                     </td>
                     <td className="py-3 px-4 text-dark-text">
