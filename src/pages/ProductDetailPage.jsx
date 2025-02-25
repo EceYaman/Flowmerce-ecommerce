@@ -1,4 +1,4 @@
-import { ChevronRight, Heart, ShoppingCartIcon, StarIcon } from "lucide-react";
+import { ChevronRight, Heart, ShoppingCartIcon, StarIcon, Trash } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { data } from "../../data";
 import { ProductCard } from "../components/ProductCard";
@@ -6,6 +6,7 @@ import { LoadingSpinner } from "../components/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetail, fetchProducts } from "../store/thunks";
 import { useEffect, useState } from "react";
+import { addToCart, removeFromCart, updateCartQuantity } from "../store/actions/shoppingCartActions";
 
 const detailData = {
     image:"https://placehold.co/350x420",
@@ -24,6 +25,10 @@ export function ProductDetailPage() {
   const product = useSelector((state) => state.product.productDetail);
   const { productList, fetchState } = useSelector((state) => state.product);
   const [limitedProducts, setLimitedProducts] = useState([]);
+
+  const cartItem = useSelector(state =>
+    state.shoppingCart.cart.find(item => item.product.id === product?.id)
+  );
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -49,6 +54,23 @@ export function ProductDetailPage() {
   }
 
   const colors = ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
+
+  const handleIncrease = () => {
+    if (!cartItem) {
+      dispatch(addToCart(product));
+    } else {
+      dispatch(updateCartQuantity(product.id, cartItem.count + 1));
+    }
+  };
+  
+  const handleDecrease = () => {
+    if (!cartItem || cartItem.count === 0) return;
+    if (cartItem.count > 1) {
+      dispatch(updateCartQuantity(product.id, cartItem.count - 1));
+    } else {
+      dispatch(removeFromCart(product.id));
+    }
+  };
   return(
     <>
       <div className="bg-gray-light w-full p-8  md:px-32">
@@ -83,7 +105,30 @@ export function ProductDetailPage() {
             </div>
             
             <div className="flex gap-6 items-center py-12">
-              <button onClick={() => dispatch(addToCart(product))} className="btn bg-primary w-[85%] md:w-96 flex items-center justify-center text-lg gap-2">Add to Cart <ShoppingCartIcon className="stroke-2 w-4" /> </button>
+            <div className="flex items-center gap-4 text-dark-text">
+              <button onClick={handleDecrease} className="text-lg w-5 py-3 border rounded border-light-text">-</button>
+              <span>{cartItem ? cartItem.count : 0}</span>
+              <button onClick={handleIncrease} className="text-lg w-5 py-3 border rounded border-light-text">+</button>
+              {cartItem && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dispatch(removeFromCart(product.id));
+                  }}
+                >
+                  <Trash className="w-5" />
+                </button>
+              )}
+            </div>
+
+            {/* Add to Cart Butonu */}
+            <button 
+              onClick={() => dispatch(addToCart(product))}
+              className="btn bg-primary w-[85%] md:w-96 flex items-center justify-center text-lg gap-2"
+            >
+              Add to Cart <ShoppingCartIcon className="stroke-2 w-4" />
+            </button>
               <Heart className="stroke-2 text-primary"/>
             </div>
           </div>
