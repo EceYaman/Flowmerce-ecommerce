@@ -1,18 +1,39 @@
-import { ChevronRight, EyeIcon, Heart, ShoppingCartIcon, StarHalf, StarIcon } from "lucide-react";
+import { ChevronRight, EyeIcon, Heart, ShoppingCartIcon, StarIcon } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { Slider } from "../components/Slider";
 import { data } from "../../data";
 import { ProductCard } from "../components/ProductCard";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductDetail } from "../store/thunks";
-import { useEffect } from "react";
+import { fetchProductDetail, fetchProducts } from "../store/thunks";
+import { useEffect, useState } from "react";
+
+const detailData = {
+    image:"https://placehold.co/350x420",
+    title:"the quick fox jumps over",
+    text:["Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.", "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."],
+    title2:"the quick fox jumps over",
+    list:["the quick fox jumps over the lazy dog", "the quick fox jumps over the lazy dog", "the quick fox jumps over the lazy dog", "the quick fox jumps over the lazy dog",],
+    title3:"the quick fox jumps over",
+    list2:["the quick fox jumps over the lazy dog", "the quick fox jumps over the lazy dog", "the quick fox jumps over the lazy dog",],
+}
+
 
 export function ProductDetailPage() {
-  const { productId } = useParams(); // URL'den gelen productId
+  const { productId } = useParams(); 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.productDetail);
-  const fetchState = useSelector((state) => state.product.fetchState);
+  const { productList, fetchState } = useSelector((state) => state.product);
+  const [limitedProducts, setLimitedProducts] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+
+  useEffect(() => {
+      setLimitedProducts(productList.slice(0, 8)); 
+  }, [fetchState, productList]);
 
   useEffect(() => {
     if (productId) {
@@ -28,9 +49,10 @@ export function ProductDetailPage() {
     return <div>Product not found!</div>;
   }
 
+  const colors = ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
   return(
     <>
-      <div className="bg-gray-light w-full px-8  md:px-32">
+      <div className="bg-gray-light w-full p-8  md:px-32">
         <nav className='flex justify-center gap-x-4 py-10 md:justify-start'>
         <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
         <ChevronRight className="text-gray-text"/>
@@ -38,23 +60,32 @@ export function ProductDetailPage() {
         </nav>
 
         <div className="flex flex-col gap-y-8 md:flex-row  md:gap-x-16 md:items-center">
-          <img src={product.images[0]?.url} alt="Product" />
+          <img src={product.images[0]?.url} alt="Product" className=" md:max-w-[35%]"/>
 
-          <div className="">
+          <div>
             <h5 className="card-title">{product.name}</h5>
-            <p className="text-base font-semibold text-gray-text">{product. review}</p>
-            <h3 className="title">{product.price}</h3>
-            <p className="text-base font-semibold text-gray-text mb-8">
-              Availability : <span className="text-primary">{product. stock}</span>
+            <div className="flex items-center gap-1">
+              <StarIcon className="text-yellow-500 fill-yellow-500 w-4" />
+              <p className="text-base font-medium text-gray-text">{product. rating}</p>
+            </div>
+            <h3 className="title mt-8">{product.price}₺</h3>
+            <p className="text-base font-medium text-gray-text mb-8">
+              Stock: <span className="text-primary">{product. stock}</span>
             </p>
-            <p className="text-base text-gray-text font-medium max-w-[85%]">{product.info}</p>
-            <hr className="text-light-text border my-4"></hr>
+            <p className="text-base text-gray-text">{product.description}</p>
+            <hr className="text-light-text border my-4 "></hr>
+            <div className="flex justify-star gap-2">
+                {colors.map((item, index) => (
+                <span
+                    key={index}
+                    className={`w-5 h-5 rounded-full ${item}`} 
+                />
+                ))}
+            </div>
             
             <div className="flex gap-6 items-center py-12">
-              <button className="btn bg-primary">Select Options</button>
-              <Heart className="stroke-1"/>
-              <ShoppingCartIcon className="stroke-1" />
-              <EyeIcon className="stroke-1" />
+              <button className="btn bg-primary w-[85%] md:w-96 flex items-center justify-center text-lg gap-2">Add to Cart <ShoppingCartIcon className="stroke-2 w-4" /> </button>
+              <Heart className="stroke-2 text-primary"/>
             </div>
           </div>
 
@@ -63,26 +94,41 @@ export function ProductDetailPage() {
 
       <div className="px-8 md:px-32">
         <nav className="text-gray-text text-lg font-medium flex justify-between pt-10 md:justify-center md:gap-16">
-          <Link to="#description">Description</Link>
+          <Link to="#description" className="underline">Description</Link>
           <Link to="#additional">Additional Information</Link>
           <Link to="#reviews">Reviews</Link>
         </nav>
 
         <div className="flex flex-col gap-10 py-10 md:flex-row md:justify-between md:items-center">
-          <img src={product.descImage} alt={product.title} className="rounded-lg"/>
+          <img src={detailData.image} alt={product.title} className="rounded-lg"/>
           <div className="flex flex-col gap-6 md:max-w-[30%]">
-            <h3 className="title">{product.descTitle}</h3>
+            <h3 className="title">{detailData.title}</h3>
+            {detailData.text.map((item,index) => (
+              <p key={index} className="text-base text-gray-text max-w-[90%] ">{item}</p>
+            ))}
             
           </div>
 
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-6">
-              <h3 className="title">{product.descTitle2}</h3>
-              
+              <h3 className="title">{detailData.title2}</h3>
+              {detailData.list2.map((item,index) => (
+                <ul key={index}  className="flex">
+                  <ChevronRight className="stroke-1 text-gray-text"/> 
+                  <li className="text-base text-gray-text ">{item}</li>
+                </ul>
+              ))}
+
             </div>
 
             <div className="flex flex-col gap-6">
-              <h3 className="title">{product.descTitle3}</h3>
+              <h3 className="title">{detailData.title3}</h3>
+              {detailData.list2.map((item,index) => (
+                <ul key={index}  className="flex">
+                  <ChevronRight className="stroke-1 text-gray-text"/> 
+                  <li className="text-base text-gray-text ">{item}</li>
+                </ul>
+              ))}
               
             </div>
           </div>
@@ -92,10 +138,14 @@ export function ProductDetailPage() {
 
 
       <div className="bg-gray-light w-full px-8 py-12 md:px-32">
-        <h3 className="title">BESTSELLER PRODUCTS</h3>
-        <hr className="text-light-text border my-8"></hr>
+        <h3 className="title mb-8">BESTSELLER PRODUCTS</h3>
         <div className="flex flex-col  gap-y-16 md:grid md:grid-cols-4  md:gap-4 md:gap-y-16">
-       
+          {limitedProducts.map((item, index) => (
+              <div key={item.id} className={`${index >= 4 ? 'hidden md:block' : ''}`}>
+                <ProductCard item={item}/>
+              </div>
+          ))}
+
         </div>
       </div>
       
