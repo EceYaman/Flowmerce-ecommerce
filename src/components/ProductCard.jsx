@@ -1,5 +1,8 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { addToCart } from "../store/actions/shoppingCartActions";
+import { ShoppingCartIcon } from "lucide-react";
 
 export function ProductCard({ item }){
     const colors = ["bg-primary", "bg-secondary", "bg-tertiary", "bg-dark-text"]
@@ -10,8 +13,18 @@ export function ProductCard({ item }){
 
     const { gender, categoryName, categoryId} = useParams();
 
+    const dispatch = useDispatch();
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dispatch(addToCart(item));
+    };
+
+
     return(
-        <>
+        <div className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <Link to={`/shop/${gender}/${categoryName}/${categoryId}/${generateSlug(item.name)}/${item.id}`}>
         <div className="flex flex-col gap-y-3 text-center bg-white pb-4 border border-gray-light md:h-[650px] justify-between  shadow-sm">
             <div className="overflow-hidden relative">
@@ -32,6 +45,14 @@ export function ProductCard({ item }){
             </div>
         </div>
         </Link>
-        </>
+        {isHovered && (
+        <button 
+          onClick={handleAddToCart}
+          className="absolute inset-0 z-50 btn bg-primary flex items-center justify-center text-white text-lg gap-1"
+        >
+          Add to Cart <ShoppingCartIcon className="stroke-2 w-4" />
+        </button>
+      )}
+        </div>
     )
 }

@@ -1,6 +1,5 @@
-import { ChevronRight, EyeIcon, Heart, ShoppingCartIcon, StarIcon } from "lucide-react";
+import { ChevronRight, Heart, ShoppingCartIcon, StarIcon } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { Slider } from "../components/Slider";
 import { data } from "../../data";
 import { ProductCard } from "../components/ProductCard";
 import { LoadingSpinner } from "../components/LoadingSpinner";
@@ -84,7 +83,7 @@ export function ProductDetailPage() {
             </div>
             
             <div className="flex gap-6 items-center py-12">
-              <button className="btn bg-primary w-[85%] md:w-96 flex items-center justify-center text-lg gap-2">Add to Cart <ShoppingCartIcon className="stroke-2 w-4" /> </button>
+              <button onClick={() => dispatch(addToCart(product))} className="btn bg-primary w-[85%] md:w-96 flex items-center justify-center text-lg gap-2">Add to Cart <ShoppingCartIcon className="stroke-2 w-4" /> </button>
               <Heart className="stroke-2 text-primary"/>
             </div>
           </div>
