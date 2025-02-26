@@ -4,8 +4,10 @@ import { data } from '../../data';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Gravatar from 'react-gravatar';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export function Header() {
+  const history = useHistory();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -57,6 +59,9 @@ export function Header() {
   const openShop = () => toggleDropdown(setIsShopOpen, closeShopTimerRef, true);
   const closeShop = () => toggleDropdown(setIsShopOpen, closeShopTimerRef, false);
 
+  const handleProceedOrder = () => {
+    history.push('/create-order');
+  };
 
   return (
     <>
@@ -250,7 +255,7 @@ export function Header() {
                     >
                       Sepete Git
                     </Link>
-                    <button className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700">
+                    <button onClick={handleProceedOrder} className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700">
                       Siparişi Tamamla
                     </button>
                   </div>
