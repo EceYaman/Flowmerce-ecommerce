@@ -16,6 +16,9 @@ import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchCategories, fetchProducts, verifyToken } from './store/thunks'
+import { CreateOrderPage } from './pages/CreateOrderPage'
+import PrivateRoute from '../PrivateRoute'
+
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +50,7 @@ function App() {
         <Route path="/shoppingcart" component={ShoppingCartPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
+        <PrivateRoute path="/create-order" component={CreateOrderPage} />
         </Switch>
         <ToastContainer />
       </PageContent>

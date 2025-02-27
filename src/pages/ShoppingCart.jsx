@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, toggleCartItemSelection, updateCartQuantity } from "../store/actions/shoppingCartActions";
 import { Trash } from "lucide-react";
+import { useHistory } from "react-router-dom";
 
 export function ShoppingCartPage() {
+    const history = useHistory();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.shoppingCart.cart);
 
@@ -32,6 +34,11 @@ export function ShoppingCartPage() {
   
     const handleToggle = (productId) => {
       dispatch(toggleCartItemSelection(productId));
+    };
+
+    const handleProceedOrder = () => {
+      // Kullanıcıyı Create Order sayfasına yönlendir
+      history.push('/create-order');
     };
   
     return (
@@ -115,7 +122,7 @@ export function ShoppingCartPage() {
               </span>
             </div>
   
-            <button className="bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full">
+            <button onClick={handleProceedOrder} className="bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full">
               Seçili Ürünleri Satın Al
             </button>
           </div>
