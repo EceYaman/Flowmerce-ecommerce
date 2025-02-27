@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 import { Check } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../store/actions/shoppingCartActions';
 
 export function CreateOrderPage() {
+  const dispatch = useDispatch();
   const [addresses, setAddresses] = useState([]);
   const [activeAddressType, setActiveAddressType] = useState(null);
   const [selectedShippingAddressId, setSelectedShippingAddressId] = useState(null);
@@ -235,12 +238,13 @@ export function CreateOrderPage() {
     try {
       await api.post('/order', payload);
       toast.success('Congratulations on your order!');
-      // Ekranı ve sepeti sıfırla
+      // Sepeti ve ekranı sıfırla:
       setSelectedShippingAddressId(null);
       setSelectedReceiptAddressId(null);
       setSelectedCardId(null);
       setOrderCardCCV('');
       setCart([]);
+      dispatch(clearCart());
     } catch (error) {
       console.error('Error creating order:', error);
       toast.error('Error creating order');

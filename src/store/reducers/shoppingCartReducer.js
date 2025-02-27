@@ -1,4 +1,4 @@
-import { SET_CART, SET_PAYMENT, SET_ADDRESS, ADD_TO_CART, REMOVE_FROM_CART, TOGGLE_CART_ITEM_SELECTION, UPDATE_CART_QUANTITY } from '../actions/shoppingCartActions';
+import { SET_CART, SET_PAYMENT, SET_ADDRESS, ADD_TO_CART, REMOVE_FROM_CART, TOGGLE_CART_ITEM_SELECTION, UPDATE_CART_QUANTITY, CLEAR_CART } from '../actions/shoppingCartActions';
 
 const initialState = {
   cart: [],     
@@ -58,6 +58,8 @@ const shoppingCartReducer = (state = initialState, action) => {
       return { ...state, payment: action.payload };
     case SET_ADDRESS:
       return { ...state, address: action.payload };
+    case CLEAR_CART:
+      return { ...state, cart: [] };
     default:
       return state;
   }
