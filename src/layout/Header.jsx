@@ -11,6 +11,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
   const handleMenuToggle = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -191,7 +192,25 @@ export function Header() {
             {user && user.email ? (
               <div className="flex items-center gap-x-1">
                 <Gravatar email={user.email} size={24} className="rounded-full" />
-                <span className="hidden md:block md:text-base md:text-primary">{user.name}</span>
+                <div className="relative">
+                <button 
+                  onClick={() => setIsUserDropdownOpen(prev => !prev)}
+                  className="hidden md:block md:text-base md:text-primary cursor-pointer"
+                >
+                  {user.name}
+                </button>
+                {isUserDropdownOpen && (
+                  <div className="absolute bg-white shadow p-4 rounded w-36 mt-2">
+                    <Link 
+                      to="/previous-orders" 
+                      className="text-gray-text hover:text-primary text-sm"
+                      onClick={() => setIsUserDropdownOpen(false)}
+                    >
+                      Geçmiş Siparişler
+                    </Link>
+                  </div>
+                )}
+                </div>
               </div>
             ) : (
               <div className="flex items-center gap-x-1">

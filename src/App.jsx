@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux'
 import { fetchCategories, fetchProducts, verifyToken } from './store/thunks'
 import { CreateOrderPage } from './pages/CreateOrderPage'
 import PrivateRoute from '../PrivateRoute'
+import { PreviousOrdersPage } from './pages/PreviousOrdersPage'
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
         <PrivateRoute path="/create-order" component={CreateOrderPage} />
+        <PrivateRoute path="/previous-orders" component={PreviousOrdersPage} />
         </Switch>
         <ToastContainer />
       </PageContent>
