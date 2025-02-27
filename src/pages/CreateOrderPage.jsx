@@ -5,14 +5,10 @@ import { Check } from 'lucide-react';
 
 export function CreateOrderPage() {
   const [addresses, setAddresses] = useState([]);
-
   const [activeAddressType, setActiveAddressType] = useState(null);
-
   const [selectedShippingAddressId, setSelectedShippingAddressId] = useState(null);
   const [selectedReceiptAddressId, setSelectedReceiptAddressId] = useState(null);
-
   const [sameAddress, setSameAddress] = useState(false);
-
   const [showForm, setShowForm] = useState(false);
   const [editingAddressId, setEditingAddressId] = useState(null);
 
@@ -114,22 +110,18 @@ export function CreateOrderPage() {
 
 
    //ÖDEME YÖNTEMLERİ İÇİN GEREKLİ STATE ve FONKSİYONLAR
-   
    const [cards, setCards] = useState([]);
-
-   // Kart formunun görünürlüğü ve düzenlenen kart
    const [showCardForm, setShowCardForm] = useState(false);
    const [editingCardId, setEditingCardId] = useState(null);
- 
-   // Kart form verisi
+   const [selectedCardId, setSelectedCardId] = useState(null);
+
    const [cardFormData, setCardFormData] = useState({
      card_no: '',
      expire_month: '',
      expire_year: '',
      name_on_card: '',
    });
- 
-   // Kayıtlı kartları GET isteği ile çekmek
+
    const fetchCards = async () => {
      try {
        const response = await api.get('/user/card');
@@ -143,24 +135,20 @@ export function CreateOrderPage() {
    useEffect(() => {
      fetchCards();
    }, []);
- 
-   // Kart formu değişikliklerini yönetme
+
    const handleCardInputChange = (e) => {
      const { name, value } = e.target;
      setCardFormData((prev) => ({ ...prev, [name]: value }));
    };
- 
-   // Kart ekleme/güncelleme
+
    const handleCardSubmit = async (e) => {
      e.preventDefault();
      try {
        if (editingCardId) {
-         // Kart güncelleme
          const payload = { id: editingCardId, ...cardFormData };
          await api.put('/user/card', payload);
          toast.success('Card updated successfully');
        } else {
-         // Yeni kart ekleme
          await api.post('/user/card', cardFormData);
          toast.success('Card added successfully');
        }
@@ -178,8 +166,7 @@ export function CreateOrderPage() {
        toast.error('Error saving card');
      }
    };
- 
-   // Kart düzenleme
+
    const handleEditCard = (card) => {
      setEditingCardId(card.id);
      setCardFormData({
@@ -190,8 +177,7 @@ export function CreateOrderPage() {
      });
      setShowCardForm(true);
    };
- 
-   // Kart silme
+
    const handleDeleteCard = async (cardId) => {
      try {
        await api.delete(`/user/card/${cardId}`);
@@ -203,14 +189,17 @@ export function CreateOrderPage() {
      }
    };
 
-   //SİPARİŞİ TAMAMLAMA (PLACE ORDER) FONKSİYONU 
-  const handlePlaceOrder = () => {
+   const handlePlaceOrder = () => {
     if (!selectedShippingAddressId) {
       toast.error('Please select a shipping address!');
       return;
     }
     if (!sameAddress && !selectedReceiptAddressId) {
       toast.error('Please select a receipt address!');
+      return;
+    }
+    if (!selectedCardId) {
+      toast.error('Please select a credit card!');
       return;
     }
     toast.success('Order placed successfully!');
@@ -487,34 +476,42 @@ return (
           <p>No saved cards found.</p>
         ) : (
           <ul>
-            {cards.map((card) => (
-              <li
-                key={card.id}
-                className="border border-light-text rounded p-4 mb-2 flex justify-between items-center"
-              >
-                <div>
-                  <p className="font-bold">Card Number: {card.card_no}</p>
-                  <p>
-                    Expires: {card.expire_month}/{card.expire_year}
-                  </p>
-                  <p>Name on Card: {card.name_on_card}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => handleEditCard(card)}
-                    className="bg-secondary-light hover:bg-secondary text-white p-1 rounded"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDeleteCard(card.id)}
-                    className="bg-alert hover:bg-red-600 text-white p-1 rounded"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
+             {cards.map((card) => (
+                <li
+                  key={card.id}
+                  className={`border border-light-text rounded p-4 mb-2 flex justify-between items-center ${
+                    selectedCardId === card.id ? 'bg-gray-light' : ''
+                  }`}
+                >
+                  <div onClick={() => setSelectedCardId(card.id)} className="cursor-pointer">
+                    <p className="font-bold">Card Number: {card.card_no}</p>
+                    <p>
+                      Expires: {card.expire_month}/{card.expire_year}
+                    </p>
+                    <p>Name on Card: {card.name_on_card}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleEditCard(card)}
+                      className="bg-secondary-light hover:bg-secondary text-white p-1 rounded"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteCard(card.id)}
+                      className="bg-alert hover:bg-red-600 text-white p-1 rounded"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      onClick={() => setSelectedCardId(card.id)}
+                      className="bg-primary hover:bg-blue-500 text-white p-1 rounded"
+                    >
+                      <Check className="w-3" />
+                    </button>
+                  </div>
+                </li>
+              ))}
           </ul>
         )}
         <button
