@@ -1,16 +1,32 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MenuIcon, SearchIcon, ShoppingCartIcon, Phone, Mail, Heart, User2Icon, ChevronDown} from 'lucide-react'; 
 import { data } from '../../data';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Gravatar from 'react-gravatar';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { clearUser } from '../store/actions/clientActions';
 
 export function Header() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+  const userDropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
+        setIsUserDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
 
   const handleMenuToggle = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -61,6 +77,13 @@ export function Header() {
 
   const handleProceedOrder = () => {
     history.push('/create-order');
+  };
+
+  const handleLogout = () => {
+    // Eğer token gibi bilgiler saklanıyorsa temizleyin
+    localStorage.removeItem('token'); // örnek
+    dispatch(clearUser());
+    history.push('/login'); // Kullanıcıyı login sayfasına yönlendirin
   };
 
   return (
@@ -188,17 +211,50 @@ export function Header() {
         })}
         </nav>
         <nav className="flex gap-x-6">
-            {user && user.email ? (
-              <div className="flex items-center gap-x-1">
-                <Gravatar email={user.email} size={24} className="rounded-full" />
-                <span className="hidden md:block md:text-base md:text-primary">{user.name}</span>
-              </div>
+        {user && user.email ? (
+          <div className="flex items-center gap-x-1">
+            {/* Profil fotoğrafına da tıklanınca dropdown toggle olsun */}
+            <div onClick={() => setIsUserDropdownOpen(prev => !prev)} className="cursor-pointer">
+              <Gravatar email={user.email} size={24} className="rounded-full" />
+            </div>
+            <div ref={userDropdownRef} className="relative">
+              <button 
+                onClick={() => setIsUserDropdownOpen(prev => !prev)}
+                className="hidden md:block md:text-base md:text-primary cursor-pointer"
+              >
+                {user.name}
+              </button>
+              {isUserDropdownOpen && (
+                <div className="absolute right-0 bg-white shadow mt-2 py-2 rounded z-50">
+                  <Link 
+                    to="/previous-orders" 
+                    className="block px-4 py-2 text-dark-text hover:bg-gray-100"
+                    onClick={() => setIsUserDropdownOpen(false)}
+                  >
+                    Geçmiş Siparişler
+                  </Link>
+                  <button 
+                    onClick={handleLogout}
+                    className="block px-4 py-2 text-dark-text hover:bg-gray-100 w-full text-left"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
             ) : (
               <div className="flex items-center gap-x-1">
-                <Link to="/login"><User2Icon className="cursor-pointer stroke-1 stroke-primary md:w-5" /></Link>
-                <Link to="/login" className="hidden md:block md:text-base md:text-primary md:font-medium">Login</Link>
+                <Link to="/login">
+                  <User2Icon className="cursor-pointer stroke-1 stroke-primary md:w-5" />
+                </Link>
+                <Link to="/login" className="hidden md:block md:text-base md:text-primary md:font-medium">
+                  Login
+                </Link>
                 <span className="hidden md:block md:text-base md:text-primary md:font-medium">/</span>
-                <Link to="/signup" className="hidden md:block md:text-base md:text-primary md:font-medium">Register</Link>
+                <Link to="/signup" className="hidden md:block md:text-base md:text-primary md:font-medium">
+                  Register
+                </Link>
               </div>
             )}
             <SearchIcon className="cursor-pointer stroke-1 stroke-primary md:w-5" />

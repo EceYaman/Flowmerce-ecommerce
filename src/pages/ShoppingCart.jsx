@@ -44,9 +44,10 @@ export function ShoppingCartPage() {
     return (
       <div className="px-8 py-4 md:px-32">
         <h1 className="text-2xl font-bold my-8 text-dark-text">Alışveriş Sepeti</h1>
-
+        {cart.length === 0 ? (
+          <p className="text-dark-text">Your shopping cart is empty</p>
+        ) : (
         <div className="flex flex-col md:flex-row gap-4">
-
           <div className="md:w-[70%] bg-white rounded shadow ">
             <table className="w-full text-left">
               <thead>
@@ -102,7 +103,7 @@ export function ShoppingCartPage() {
                   </tr>
                 );
               })}
-            </tbody>
+              </tbody>
             </table>
           </div>
   
@@ -127,6 +128,7 @@ export function ShoppingCartPage() {
             </button>
           </div>
         </div>
+        )}
       </div>
     )
 }
