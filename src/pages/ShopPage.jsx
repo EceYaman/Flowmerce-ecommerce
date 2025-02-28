@@ -1,8 +1,8 @@
-import { ChevronRight, LayoutGridIcon,Menu} from "lucide-react";
+import { ChevronRight, LayoutGridIcon, Menu } from "lucide-react";
 import { data } from "../../data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CategoryCard } from "../components/CategoryCard";
 import { fetchProducts } from "../store/thunks";
@@ -12,6 +12,14 @@ import ReactPaginate from "react-paginate";
 export function ShopPage(){
   const dispatch = useDispatch();
   const { categoryId } = useParams();
+  const history = useHistory();
+  const location = useLocation();
+
+  // URL'deki query parametrelerini URLSearchParams ile okuyalım.
+  const searchParams = new URLSearchParams(location.search);
+  const initialSort = searchParams.get("sort") || "";
+  const initialFilter = searchParams.get("filter") || "";
+
   const categories = useSelector((state) => state.product.categories);
   const productList = useSelector((state) => state.product.productList);
   const total = useSelector((state) => state.product.total);
@@ -29,11 +37,12 @@ export function ShopPage(){
   const offset = currentPage * limit;
   const pageCount = total ? Math.ceil(total / limit) : 0;
 
-  const [tempSort, setTempSort] = useState("");
-  const [tempFilter, setTempFilter] = useState("");
-  const [sort, setSort] = useState("");
-  const [filterText, setFilterText] = useState("");
+  const [tempSort, setTempSort] = useState(initialSort);
+  const [tempFilter, setTempFilter] = useState(initialFilter);
+  const [sort, setSort] = useState(initialSort);
+  const [filterText, setFilterText] = useState(initialFilter);
 
+  // fetchParams içerisine sort ve filter değerlerini ekleyerek API isteğini yapılandırıyoruz.
   const fetchParams = useMemo(() => ({
     limit,
     offset,
@@ -41,6 +50,7 @@ export function ShopPage(){
     sort,
     filter: filterText,
   }), [limit, offset, categoryId, sort, filterText]);
+
   useEffect(() => {
     dispatch(fetchProducts(fetchParams));
   }, [dispatch, fetchParams]);
@@ -49,11 +59,24 @@ export function ShopPage(){
     setCurrentPage(0);
   }, [categoryId]);
 
+  // handleFilter, sort ve filter state’lerini günceller ve URL’yi query parametrelerine göre günceller.
   const handleFilter = useCallback(() => {
     setFilterText(tempFilter);
     setSort(tempSort);
-    setCurrentPage(0); 
-  }, [tempFilter, tempSort]);
+    setCurrentPage(0);
+
+    // Yeni query parametrelerini oluşturuyoruz.
+    const params = new URLSearchParams();
+    if (tempSort) params.set("sort", tempSort);
+    if (tempFilter) params.set("filter", tempFilter);
+    if (categoryId) params.set("category", categoryId);
+    
+    // URL, örneğin: "/shop?sort=price:desc&filter=CLIENT_INPUT" şeklinde güncellenecek.
+    history.push({
+      pathname: "/shop",
+      search: params.toString(),
+    });
+  }, [tempFilter, tempSort, history, categoryId]);
 
   const handlePageClick = (event) => {
     const selectedPage = event.selected; 
@@ -65,26 +88,26 @@ export function ShopPage(){
       <div className="bg-gray-light w-full pb-12">
         <div className="flex flex-col gap-y-12 items-center py-10 md:flex-row md:justify-between md:px-32">
           <h3 className="title">Shop</h3>
-          <nav className='flex gap-x-4 '>
-          <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
-          <ChevronRight className="text-gray-text"/>
-          <Link to="/shop" className="text-gray-text font-semibold text-lg">Shop</Link>
+          <nav className="flex gap-x-4">
+            <Link to="/" className="text-dark-text font-semibold text-lg">Home</Link>
+            <ChevronRight className="text-gray-text" />
+            <Link to="/shop" className="text-gray-text font-semibold text-lg">Shop</Link>
           </nav>
         </div>
-        <div className="flex flex-col gap-y-6 px-8 md:flex-row md:gap-x-4 md:px-32 " >
-            {top5.map((item) => (
-                <CategoryCard key={item.id} item={item}/>
-            ))}
+        <div className="flex flex-col gap-y-6 px-8 md:flex-row md:gap-x-4 md:px-32">
+          {top5.map((item) => (
+            <CategoryCard key={item.id} item={item} />
+          ))}
         </div>
       </div> 
       
-      {/* Sort and filter controls */}
+      {/* Sort ve filter kontrolleri */}
       <div className="flex flex-col items-center md:flex-row justify-between p-8 md:px-32 md:my-16">
         <p className="text-gray-text text-lg font-medium">Showing {total} results</p>
         <div className="flex items-center space-x-2">
           <p className="text-gray-text text-lg font-medium">Views:</p>
-          <LayoutGridIcon className="stroke-1 border rounded fill-dark-text"/>
-          <Menu className="stroke-1 border rounded"/>
+          <LayoutGridIcon className="stroke-1 border rounded fill-dark-text" />
+          <Menu className="stroke-1 border rounded" />
         </div>
         <div className="flex items-center gap-2 justify-center md:justify-end">
           <input 
@@ -97,13 +120,13 @@ export function ShopPage(){
           <select
             value={tempSort}
             onChange={(e) => setTempSort(e.target.value)}
-            className=" bg-gray-light rounded p-4 max-w-[30%] md:max-w-[50%]"
+            className="bg-gray-light rounded p-4 max-w-[30%] md:max-w-[50%]"
           >
             <option value="">Suggested Order</option>
-            <option value="price:asc">Highest price</option>
-            <option value="price:desc">Lowest price</option>
-            <option value="rating:asc">Highest Rating</option>
-            <option value="rating:desc">Lowest Rating</option>
+            <option value="price:asc">Lowest price</option>
+            <option value="price:desc">Highest price</option>
+            <option value="rating:asc">Lowest Rating</option>
+            <option value="rating:desc">Highest Rating</option>
           </select>
           <button 
             className="btn bg-primary hover:bg-blue-700 text-white"
@@ -112,9 +135,7 @@ export function ShopPage(){
             Filter
           </button>
         </div>
-        
       </div>
-
         
       <div className="flex flex-col p-8 gap-12 md:grid md:grid-cols-4 md:p-0 md:px-32">
         {fetchState === 'FETCHING' ? (
@@ -125,29 +146,29 @@ export function ShopPage(){
               <ProductCard key={item.id} item={item} />
             ))
           ) : (
-            <p className=" text-gray-text text-xl">
+            <p className="text-gray-text text-xl">
               Ürün bulunamadı...
             </p>
           )
         )}
       </div>
 
-      <div className="flex justify-center items-center my-10 cursor-pointer max-w-[90%] mx-auto ">
+      <div className="flex justify-center items-center my-10 cursor-pointer max-w-[90%] mx-auto">
         {pageCount > 0 && (
           <ReactPaginate
-          breakLabel="..."
-          nextLabel="Next>"
-          previousLabel="<Previous"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={1}
-          pageCount={pageCount}
-          containerClassName="flex items-center"
-          pageLinkClassName="p-2 border border-light-text text-primary"
-          previousLinkClassName="p-2 border border-primary text-primary rounded-l-lg"
-          nextLinkClassName="p-2 border border-primary text-primary rounded-r-lg"
-          activeLinkClassName="bg-primary text-white p-2 border border-primary"
-          breakLinkClassName="p-2 border border-light-text text-light-text"
-        />
+            breakLabel="..."
+            nextLabel="Next>"
+            previousLabel="<Previous"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={1}
+            pageCount={pageCount}
+            containerClassName="flex items-center"
+            pageLinkClassName="p-2 border border-light-text text-primary"
+            previousLinkClassName="p-2 border border-primary text-primary rounded-l-lg"
+            nextLinkClassName="p-2 border border-primary text-primary rounded-r-lg"
+            activeLinkClassName="bg-primary text-white p-2 border border-primary"
+            breakLinkClassName="p-2 border border-light-text text-light-text"
+          />
         )}
       </div>
 
@@ -162,5 +183,5 @@ export function ShopPage(){
         ))}
       </div>
     </main>
-  )
+  );
 }
