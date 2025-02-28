@@ -4,22 +4,22 @@ import { data } from "../../data";
 export function AboutUsPage() {
     return(
         <>
-            <div className="flex flex-col items-center px-8 gap-8 my-16">
-                <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center px-8 gap-8 my-16 md:flex-row md:justify-between md:px-32">
+                <div className="flex flex-col items-center gap-8 md:items-start">
                     <h3 className="title">ABOUT US</h3>
-                    <p className="max-w-[70%] text-center text-base text-gray-text">We know how large objects will act, but things on a small scale just do not act that way.</p>
+                    <p className="max-w-[70%] text-center text-base text-gray-text md:text-left">We know how large objects will act, but things on a small scale just do not act that way.</p>
                     <button className="btn bg-primary">Get Quote Now</button>
                 </div>
-                <img src="https://placehold.co/380x440"/>
+                <img src="https://placehold.co/550x450"/>
             </div>
-            <div className="flex flex-col items-center px-8 gap-8 mb-16">
-                <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center px-8 gap-8 mb-16 md:flex-row md:justify-between md:px-32">
+                <div className="flex flex-col items-center gap-8 md:items-start">
                     <h6 className="text-alert text-base font-semibold">Problems trying</h6>
-                    <h4 className="text-dark-text font-bold text-2xl  max-w-[70%] text-center">Met minim Mollie non desert Alamo est sit cliquey dolor do met sent</h4>
+                    <h4 className="text-dark-text font-bold text-2xl  max-w-[70%] text-center md:text-left">Met minim Mollie non desert Alamo est sit cliquey dolor do met sent</h4>
                 </div>
-                <p className="text-center text-base text-gray-text  max-w-[70%]">Problems trying to resolve the conflict bet the two major realms of Classical physics: Newtonian mechanics</p>
+                <p className="text-center text-base text-gray-text  max-w-[70%] md:text-left">Problems trying to resolve the conflict bet the two major realms of Classical physics: Newtonian mechanics</p>
             </div>
-            <div className="px-8 flex flex-col items-center gap-8 mb-16">
+            <div className="px-8 flex flex-col items-center gap-8 mb-16 md:flex-row md:justify-between md:px-32">
                 <div className="text-center">
                     <p className="text-dark-text text-4xl font-bold">15K</p>
                     <p className="text-gray-text text-sm font-medium">Happy Customers</p>
@@ -39,7 +39,7 @@ export function AboutUsPage() {
             </div>
 
             <div className="px-8 flex flex-col items-center mb-16 relative">
-                <img src="https://placehold.co/380x440" className="w-full h-auto" />
+                <img src="https://placehold.co/980x580" />
                 <PlayCircleIcon className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white w-16 h-16" />
             </div>
 
@@ -60,10 +60,10 @@ export function AboutUsPage() {
                 </div>
            </div>
 
-            <div className="flex flex-col items-center px-8 gap-8 mb-16">
+            <div className="flex flex-col items-center px-8 gap-8 mb-16 md:px-32">
                 <h3 className="title text-center max-w-[70%]">Big Companies Are Here</h3>
-                <p className="text-center text-base text-gray-text  max-w-[70%]">Problems trying to resolve the conflict bet the two major realms of Classical physics: Newtonian mechanics</p>
-                <div className="flex flex-col items-center space-y-8 md:flex-row md:justify-between md:px-32">
+                <p className="text-center text-base text-gray-text  max-w-[70%] md:max-w-[40%]">Problems trying to resolve the conflict bet the two major realms of Classical physics: Newtonian mechanics</p>
+                <div className="flex flex-col items-center space-y-8 md:flex-row md:gap-28">
                     {data.brandLogos.map((logo, index) => (
                         <img
                         key={index}
@@ -74,12 +74,15 @@ export function AboutUsPage() {
                     ))}
                 </div>
             </div>
-
-            <div className="bg-primary w-full px-8 flex flex-col items-center gap-8 py-12">
-                <h6 className="text-base font-semibold text-white">WORK WITH US</h6>
-                <h4 className="text-3xl font-bold text-white max-w-[70%] text-center">Now Let's Grow Yours</h4>
-                <p className="text-center text-base text-white  max-w-[70%]">The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th</p>
-                <button className="btn border border-white rounded text-base font-medium">Contact</button>
+            
+            <div className="bg-primary w-full px-8 flex flex-col items-center gap-8 py-12 md:flex-row md:py-0">
+                <div className="flex flex-col items-center gap-8">
+                    <h6 className="text-base font-semibold text-white">WORK WITH US</h6>
+                    <h4 className="text-3xl font-bold text-white max-w-[70%] text-center">Now Let's Grow Yours</h4>
+                    <p className="text-center text-base text-white  max-w-[70%] md:max-w-[40%] ">The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th</p>
+                    <button className="btn border border-white rounded text-base font-medium">Contact</button>
+                </div>
+                <img src="https://placehold.co/590x640" className="hidden md:block"/>
             </div>
         </>
     )
