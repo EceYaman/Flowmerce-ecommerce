@@ -10,7 +10,7 @@ export function AboutUsPage() {
                     <p className="max-w-[70%] text-center text-base text-gray-text md:text-left">We know how large objects will act, but things on a small scale just do not act that way.</p>
                     <button className="btn bg-primary">Get Quote Now</button>
                 </div>
-                <img src="https://placehold.co/550x450"/>
+                <img src="https://img.freepik.com/premium-photo/fashion-design-planning-team-meeting-with-ideas-color-texture-clothes-luxury-brand-creative-business-designer-boutique-teamwork-staff-brainstorming-creativity-office_590464-163863.jpg"/>
             </div>
             <div className="flex flex-col items-center px-8 gap-8 mb-16 md:flex-row md:justify-between md:px-32">
                 <div className="flex flex-col items-center gap-8 md:items-start">
@@ -39,7 +39,7 @@ export function AboutUsPage() {
             </div>
 
             <div className="px-8 flex flex-col items-center mb-16 relative">
-                <img src="https://placehold.co/980x580" />
+                <img src="https://img.freepik.com/premium-photo/fashion-design-planning-team-meeting-with-ideas-color-texture-clothes-luxury-brand-creative-business-designer-boutique-teamwork-staff-brainstorming-creativity-office_590464-163863.jpg" />
                 <PlayCircleIcon className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white w-16 h-16" />
             </div>
 
@@ -53,7 +53,7 @@ export function AboutUsPage() {
                         <p className="text-gray-text text-lg text-left">Project Manager</p>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <img src="https://i.ibb.co/wZVjTJzW/foto9.jpg" className="md:max-w-64" />
+                        <img src="https://i.ibb.co/FqXX8QHt/foto9.jpg" className="md:max-w-64" />
                         <p className="text-dark-text text-xl font-semibold text-left">Ece Yaman</p>
                         <p className="text-gray-text text-lg text-left">Full Stack Developer</p>
                     </div>
@@ -82,7 +82,7 @@ export function AboutUsPage() {
                     <p className="text-center text-base text-white  max-w-[70%] md:max-w-[40%] ">The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th</p>
                     <button className="btn border border-white rounded text-base font-medium">Contact</button>
                 </div>
-                <img src="https://placehold.co/590x640" className="hidden md:block"/>
+                <img src="https://img.freepik.com/premium-photo/midsection-businessmen-with-color-swatch-desk-office_1048944-5002920.jpg" className="hidden md:block"/>
             </div>
         </>
     )

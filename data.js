@@ -389,7 +389,7 @@ export const data = {
     slides: [
       {
         id: 1,
-        image: 'https://placehold.co/400x700',
+        image: 'https://img.freepik.com/free-photo/three-young-beautiful-smiling-girls-trendy-summer-casual-dresses-sunglasses-sexy-carefree-women-posing_158538-4834.jpg?semt=ais_hybrid&w=740',
         subtitle: 'SUMMER 2024',
         title: 'NEW COLLECTION',
         paragraph: 'We know how large objects will act, but things on a small scale.',
@@ -397,7 +397,7 @@ export const data = {
       },
       {
         id: 2,
-        image: 'https://placehold.co/400x700',
+        image: 'https://img.freepik.com/premium-photo/young-couple-showcases-vibrant-fashion-while-bonding-stylish-modern-setting_1326977-15650.jpg?semt=ais_hybrid&w=740&q=80',
         subtitle: 'Fall 2024',
         title: 'Latest Trends',
         paragraph: 'Discover the latest trends in fashion and style.',
@@ -405,7 +405,7 @@ export const data = {
       },
       {
         id: 3,
-        image: 'https://placehold.co/400x700',
+        image: 'https://img.freepik.com/free-photo/young-teen-woman-sunglasses-hat-holding-shopping-bags-her-hands-feeling-so-happiness-isolated-green-wall_231208-2681.jpg?semt=ais_hybrid&w=740&q=80',
         subtitle: 'Winter 2024',
         title: 'Winter Collection',
         paragraph: 'Stay warm and stylish with our winter collection.',
@@ -416,7 +416,7 @@ export const data = {
     slides2: [
       {
         id: 1,
-        image: 'https://placehold.co/400x700',
+        image: 'https://img.freepik.com/premium-photo/young-couple-showcases-vibrant-fashion-while-bonding-stylish-modern-setting_1326977-15650.jpg?semt=ais_hybrid&w=740&q=80',
         subtitle: 'Spring 2024',
         title: 'Vita Classic Product',
         paragraph: 'We know how large objects will act. We know how are objects will act.',
@@ -425,7 +425,7 @@ export const data = {
       },
       {
         id: 2,
-        image: 'https://placehold.co/400x700',
+        image: 'https://img.freepik.com/free-photo/three-young-beautiful-smiling-girls-trendy-summer-casual-dresses-sunglasses-sexy-carefree-women-posing_158538-4834.jpg?semt=ais_hybrid&w=740',
         subtitle: 'Summer 2024',
         title: 'Vita Classic Product',
         paragraph: 'We know how are objects will act.',
@@ -438,24 +438,19 @@ export const data = {
       {
         id: 1,
         title: 'MEN',
-        img: "https://placehold.co/400x550",
+        img: "https://img.freepik.com/free-photo/man-posing-while-smiling_23-2148372317.jpg?semt=ais_hybrid&w=740",
       
       },
       {
         id: 2,
         title: 'WOMEN',
-        img: "https://placehold.co/400x550",
+        img: "https://img.freepik.com/free-photo/young-beautiful-smiling-female-trendy-summer-jeans-skirt-top-clothes-sexy-carefree-woman-posing-near-blue-wall-studio-positive-brunette-model-having-funcheerful-happy_158538-24870.jpg?semt=ais_hybrid&w=740",
        
       },
       {
         id: 3,
         title: 'ACCESSORIES',
-        img: "https://placehold.co/400x265",
-      },
-      {
-        id: 4,
-        title: 'KIDS',
-        img: "https://placehold.co/400x265",
+        img: "https://img.freepik.com/premium-photo/fashionable-young-couple-trendy-urban-casual-clothes-posing-near-wall-street-fashion-handsome-happy-hipster-man-his-girlfriend-wearing-vintage-sunglasses-stylish-denim-outfit_338491-17766.jpg?semt=ais_hybrid&w=740",
       },
     ],
 
@@ -466,7 +461,7 @@ export const data = {
         title: "Loudest à la Madison #1 (L'integral)",
         excerpt: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
         date: "22 April 2021",
-        image: "https://placehold.co/330x300",
+        image: "https://img.freepik.com/premium-psd/fashion-flyer-template-design-a4_813426-692.jpg",
         tags: ["Google", "Trending", "New"],
         comments: 10
       },
@@ -475,7 +470,7 @@ export const data = {
         title: "Loudest à la Madison #2 (L'integral)",
         excerpt: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
         date: "22 April 2021",
-        image: "https://placehold.co/330x300",
+        image: "https://img.freepik.com/premium-psd/fashion-flyer_131506-5.jpg",
         tags: ["Google", "Trending", "New"],
         comments: 8
       },
@@ -484,7 +479,7 @@ export const data = {
         title: "Loudest à la Madison #3 (L'integral)",
         excerpt: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
         date: "22 April 2021",
-        image: "https://placehold.co/330x300",
+        image: "https://img.freepik.com/premium-psd/fashion-flyer-template-design-a4_813426-368.jpg",
         tags: ["Google", "Trending", "New"],
         comments: 12
       },

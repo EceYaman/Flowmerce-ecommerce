@@ -11,7 +11,7 @@ export function TeamPage() {
                         <p className="text-gray-text text-lg text-left">Project Manager</p>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <img src="https://i.ibb.co/wZVjTJzW/foto9.jpg" className="md:max-w-64" />
+                        <img src="https://i.ibb.co/FqXX8QHt/foto9.jpg" className="md:max-w-64" />
                         <p className="text-dark-text text-xl font-semibold text-left">Ece Yaman</p>
                         <p className="text-gray-text text-lg text-left">Full Stack Developer</p>
                     </div>

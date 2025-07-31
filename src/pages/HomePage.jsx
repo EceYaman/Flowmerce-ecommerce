@@ -39,9 +39,8 @@ export function HomePage() {
           <div >
             <ShopCard item={data.shop[1]} />
           </div>
-          <div className="flex flex-col gap-y-8 md:gap-y-5">
+          <div>
             <ShopCard item={data.shop[2]} />
-            <ShopCard item={data.shop[3]} />
           </div>
         </div>
 
@@ -77,7 +76,7 @@ export function HomePage() {
           <button className="btn border border-primary text-primary">Learn More</button>
         </div>  
         </div>
-        <img src="https://placehold.co/420x400" className="w-dvh"/>
+        <img src="https://img.freepik.com/premium-photo/fashionable-young-couple-trendy-urban-casual-clothes-posing-near-wall-street-fashion-handsome-happy-hipster-man-his-girlfriend-wearing-vintage-sunglasses-stylish-denim-outfit_338491-17766.jpg?semt=ais_hybrid&w=740" className="w-dvh"/>
       </div>
       </div>
 
